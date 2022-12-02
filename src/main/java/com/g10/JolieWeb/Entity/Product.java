@@ -1,4 +1,4 @@
-package beans;
+package com.g10.JolieWeb.Entity;
 // default package
 // Generated Dec 2, 2022, 3:53:02 PM by Hibernate Tools 4.3.6.Final
 

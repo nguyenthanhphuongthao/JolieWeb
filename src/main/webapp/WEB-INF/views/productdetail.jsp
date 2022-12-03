@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <jsp:include page="header.jsp"></jsp:include>
-
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <title>Chi tiết sản phẩm | Jolie Cosmetics</title>
 </head>
 <body>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ThÃªm vÃ o giá» hÃ ng</a>
+                        <a href="#" class="primary-btn">Thêm vào giỏ hàng</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>

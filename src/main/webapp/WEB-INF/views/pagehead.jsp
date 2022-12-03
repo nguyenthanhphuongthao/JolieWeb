@@ -48,9 +48,9 @@
 					</div>
 					<div class="header__cart">
 						<ul>
-							<li><a href="#"><i class="fa fa-user"> Đăng nhập</i></a></li>
-							<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i>
-									<span>3</span></a></li>
+							<li><a href="dang-nhap"><i class="fa fa-user"> Đăng nhập</i></a></li>
+							<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>
+							<li><a href="trang-chu"><i class="fa fa-sign-out"></i></a></li>
 						</ul>
 					</div>
 				</div>

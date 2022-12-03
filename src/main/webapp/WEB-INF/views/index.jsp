@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <jsp:include page="header.jsp"></jsp:include>
-
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <title>Trang chủ | Jolie Cosmetics</title>
 </head>
 

@@ -42,4 +42,18 @@ public class JolieController {
 		mv.setViewName("cart");
 		return mv;
 	}
+	
+	@RequestMapping(value = {"dang-nhap"}, method = RequestMethod.GET)
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login");
+		return mv;
+	}
+	
+	@RequestMapping(value = {"dang-ky"}, method = RequestMethod.GET)
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("register");
+		return mv;
+	}
 }

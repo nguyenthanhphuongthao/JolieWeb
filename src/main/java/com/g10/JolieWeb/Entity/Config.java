@@ -23,6 +23,10 @@ import javax.persistence.TemporalType;
 @Table(name = "config", catalog = "jolie")
 public class Config implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String groupcode;
 	private String code;

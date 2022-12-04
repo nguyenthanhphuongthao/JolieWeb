@@ -22,6 +22,10 @@ import javax.persistence.TemporalType;
 @Table(name = "billinfo", catalog = "jolie")
 public class Billinfo implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Cart cart;
 	private Config configByPaymentMethod;

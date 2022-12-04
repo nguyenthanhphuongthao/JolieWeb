@@ -25,6 +25,10 @@ import javax.persistence.TemporalType;
 @Table(name = "product", catalog = "jolie")
 public class Product implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Config configByBrand;
 	private Config configByCategory;

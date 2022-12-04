@@ -22,6 +22,10 @@ import javax.persistence.Table;
 @Table(name = "cart", catalog = "jolie")
 public class Cart implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Accountinfo accountinfo;
 	private float totalPrice;

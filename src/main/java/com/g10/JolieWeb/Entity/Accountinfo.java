@@ -25,6 +25,10 @@ import javax.persistence.TemporalType;
 @Table(name = "accountinfo", catalog = "jolie")
 public class Accountinfo implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Account account;
 	private Config config;

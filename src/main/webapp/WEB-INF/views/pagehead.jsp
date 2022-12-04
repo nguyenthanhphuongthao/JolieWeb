@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
 <!-- Header Section Begin -->
 <header class="header">
@@ -26,13 +27,19 @@
 						<i class="fa fa-bars"></i> <span>Danh mục</span>
 					</div>
 					<ul>
-						<li><a href="#">Mỹ phẩm High-end</a></li>
+						<c:forEach var="c" items="${listConfig}">
+							<li><a href="#">${c.name}</a></li>
+						</c:forEach>
+					</ul>
+
+
+					<!-- 	<li><a href="#">Mỹ phẩm High-end</a></li>
 						<li><a href="#">Chăm sóc da mặt</a></li>
 						<li><a href="#">Trang điểm</a></li>
 						<li><a href="#">Chăm sóc tóc và da đầu</a></li>
 						<li><a href="#">Chăm sóc cơ thể</a></li>
-						<li><a href="#">Nước hoa</a></li>
-					</ul>
+						<li><a href="#">Nước hoa</a></li>  -->
+
 				</div>
 			</div>
 			<div class="col-lg-9">
@@ -48,7 +55,8 @@
 					</div>
 					<div class="header__cart">
 						<ul>
-							<li><a href="dang-nhap"><i class="fa fa-user"> Đăng nhập</i></a></li>
+							<li><a href="dang-nhap"><i class="fa fa-user"> Đăng
+										nhập</i></a></li>
 							<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>
 							<li><a href="trang-chu"><i class="fa fa-sign-out"></i></a></li>
 						</ul>

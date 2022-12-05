@@ -8,5 +8,7 @@ import com.g10.JolieWeb.Entity.Product;
 
 @Service
 public interface ProductService {
-	List<Product> getProductbyCategory();
+	List<Product> getProduct();
+	List<Product> getProductbyCategory(String category);
+	Product getDetailProduct(Integer id);
 }

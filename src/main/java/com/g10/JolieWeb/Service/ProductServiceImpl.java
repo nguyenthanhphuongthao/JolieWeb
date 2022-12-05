@@ -15,8 +15,19 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDAO productDAO;
 
 	@Override
-	public List<Product> getProductbyCategory() {
-		return productDAO.getProductbyCategory();
+	public List<Product> getProduct() {
+		// TODO Auto-generated method stub
+		return productDAO.getProduct();
+	}
+	@Override
+	public List<Product> getProductbyCategory(String category) {
+		// TODO Auto-generated method stub
+		return productDAO.getProductbyCategory(category);
+	}
+	@Override
+	public Product getDetailProduct(Integer id) {
+		// TODO Auto-generated method stub
+		return productDAO.getDetailProduct(id);
 	}
 
 }

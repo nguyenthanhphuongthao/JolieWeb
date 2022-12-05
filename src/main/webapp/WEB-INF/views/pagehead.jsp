@@ -27,19 +27,10 @@
 						<i class="fa fa-bars"></i> <span>Danh mục</span>
 					</div>
 					<ul>
-						<c:forEach var="c" items="${listConfig}">
-							<li><a href="#">${c.name}</a></li>
+						<c:forEach var="c" items="${listCategory}">
+							<li><a href="danh-muc-${c.value }">${c.name}</a></li>
 						</c:forEach>
 					</ul>
-
-
-					<!-- 	<li><a href="#">Mỹ phẩm High-end</a></li>
-						<li><a href="#">Chăm sóc da mặt</a></li>
-						<li><a href="#">Trang điểm</a></li>
-						<li><a href="#">Chăm sóc tóc và da đầu</a></li>
-						<li><a href="#">Chăm sóc cơ thể</a></li>
-						<li><a href="#">Nước hoa</a></li>  -->
-
 				</div>
 			</div>
 			<div class="col-lg-9">

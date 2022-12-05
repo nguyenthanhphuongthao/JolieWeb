@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.g10.JolieWeb.Entity.Product;
@@ -13,5 +12,11 @@ import com.g10.JolieWeb.Entity.Product;
 public interface ProductDAO extends JpaRepository<Product, Long>{
 
 	@Query("FROM Product p")
-	public List<Product> getProductbyCategory();
+	public List<Product> getProduct();
+
+	@Query("SELECT p FROM Product p WHERE configByCategory.value = ?1")
+	public List<Product> getProductbyCategory(String category);
+	
+	@Query("SELECT p FROM Product p WHERE p.id = ?1")
+	public Product getDetailProduct(Integer id);
 }

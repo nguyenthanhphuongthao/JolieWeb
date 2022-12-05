@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <jsp:include page="header.jsp"></jsp:include>
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <title>Tìm kiếm | Jolie Cosmetics</title>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	<jsp:include page="pagehead.jsp"></jsp:include> 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">

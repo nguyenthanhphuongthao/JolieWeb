@@ -88,7 +88,7 @@ public class Product implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "brand", nullable = false)
 	public Config getConfigByBrand() {
 		return this.configByBrand;
@@ -98,7 +98,7 @@ public class Product implements java.io.Serializable {
 		this.configByBrand = configByBrand;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category")
 	public Config getConfigByCategory() {
 		return this.configByCategory;
@@ -108,7 +108,7 @@ public class Product implements java.io.Serializable {
 		this.configByCategory = configByCategory;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "image")
 	public Media getMedia() {
 		return this.media;
@@ -210,7 +210,7 @@ public class Product implements java.io.Serializable {
 		this.date02 = date02;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
 	public Set<Review> getReviews() {
 		return this.reviews;
 	}
@@ -219,7 +219,7 @@ public class Product implements java.io.Serializable {
 		this.reviews = reviews;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
 	public Set<Detailcart> getDetailcarts() {
 		return this.detailcarts;
 	}

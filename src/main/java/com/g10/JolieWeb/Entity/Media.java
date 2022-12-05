@@ -173,7 +173,7 @@ public class Media implements java.io.Serializable {
 		this.date01 = date01;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "media")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "media")
 	public Set<Product> getProducts() {
 		return this.products;
 	}

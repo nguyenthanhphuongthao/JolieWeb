@@ -165,7 +165,7 @@ public class Config implements java.io.Serializable {
 		this.date02 = date02;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "configByBrand")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "configByBrand")
 	public Set<Product> getProductsForBrand() {
 		return this.productsForBrand;
 	}
@@ -174,7 +174,7 @@ public class Config implements java.io.Serializable {
 		this.productsForBrand = productsForBrand;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "config")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "config")
 	public Set<Accountinfo> getAccountinfos() {
 		return this.accountinfos;
 	}
@@ -183,7 +183,7 @@ public class Config implements java.io.Serializable {
 		this.accountinfos = accountinfos;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "configByPaymentMethod")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "configByPaymentMethod")
 	public Set<Billinfo> getBillinfosForPaymentMethod() {
 		return this.billinfosForPaymentMethod;
 	}
@@ -192,7 +192,7 @@ public class Config implements java.io.Serializable {
 		this.billinfosForPaymentMethod = billinfosForPaymentMethod;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "configByType")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "configByType")
 	public Set<Account> getAccountsForType() {
 		return this.accountsForType;
 	}
@@ -201,7 +201,7 @@ public class Config implements java.io.Serializable {
 		this.accountsForType = accountsForType;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "configByCategory")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "configByCategory")
 	public Set<Product> getProductsForCategory() {
 		return this.productsForCategory;
 	}
@@ -210,7 +210,7 @@ public class Config implements java.io.Serializable {
 		this.productsForCategory = productsForCategory;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "configByRole")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "configByRole")
 	public Set<Account> getAccountsForRole() {
 		return this.accountsForRole;
 	}
@@ -219,7 +219,7 @@ public class Config implements java.io.Serializable {
 		this.accountsForRole = accountsForRole;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "configByShippingMethod")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "configByShippingMethod")
 	public Set<Billinfo> getBillinfosForShippingMethod() {
 		return this.billinfosForShippingMethod;
 	}

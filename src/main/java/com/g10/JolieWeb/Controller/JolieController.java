@@ -7,17 +7,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.JolieWeb.Service.ConfigServiceImpl;
+import com.g10.JolieWeb.Service.ProductServiceImpl;
 
 @Controller
 public class JolieController {
 	@Autowired
 	private ConfigServiceImpl configService;
+	@Autowired
+	private ProductServiceImpl productService;
 
-	@RequestMapping(value = { "/", "/trang-chu" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "trang-chu" }, method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		mv.addObject("listConfig", configService.getCategory());
+		mv.addObject("listProductbyCategory", productService.getProductbyCategory());
 		return mv;
 	}
 

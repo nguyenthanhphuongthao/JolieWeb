@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!-- Header Section Begin -->
 <header class="header">
@@ -36,13 +36,13 @@
 			<div class="col-lg-9">
 				<div class="hero__search">
 					<div class="hero__search__form">
-						<form action="#">
+						<form:form action="tim-kiem" method="POST" modelAttribute="product">
 							<div class="hero__search__categories">
 								All Categories <span class="arrow_carrot-down"></span>
 							</div>
-							<input type="text" placeholder="What do yo u need?">
+							<form:input path="name" placeholder="Bạn muốn tìm kiếm sản phẩm nào?"/>
 							<button type="submit" class="site-btn">Tìm kiếm</button>
-						</form>
+						</form:form>
 					</div>
 					<div class="header__cart">
 						<ul>

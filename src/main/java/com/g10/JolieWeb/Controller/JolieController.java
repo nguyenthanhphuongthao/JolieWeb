@@ -1,5 +1,6 @@
 package com.g10.JolieWeb.Controller;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.g10.JolieWeb.DAO.AccountDAO;
 import com.g10.JolieWeb.DAO.AccountinfoDAO;
 import com.g10.JolieWeb.Entity.Account;
 import com.g10.JolieWeb.Entity.Accountinfo;
+import com.g10.JolieWeb.Entity.Product;
 import com.g10.JolieWeb.Service.AccountServiceImpl;
 import com.g10.JolieWeb.Service.ConfigServiceImpl;
 import com.g10.JolieWeb.Service.ProductServiceImpl;
@@ -38,6 +40,7 @@ public class JolieController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
+		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		mv.addObject("listProduct", productService.getProduct());
 		return mv;
@@ -47,6 +50,7 @@ public class JolieController {
 	public ModelAndView checkout() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("checkout");
+		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		return mv;
 	}
@@ -55,17 +59,19 @@ public class JolieController {
 	public ModelAndView productdetail(@PathVariable Integer id) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productdetail");
+		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		mv.addObject("detailProduct", productService.getDetailProduct(id));
 		return mv;
 	}
 
-	@RequestMapping(value = { "tim-kiem", "danh-muc-{value}" }, method = RequestMethod.GET)
+	@RequestMapping(value = "danh-muc-{value}", method = RequestMethod.GET)
 	public ModelAndView productfilter(@PathVariable String value) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productfilter");
+		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
-		mv.addObject("listProductbyCategory", productService.getProductbyCategory(value));
+		mv.addObject("listProduct", productService.getProductbyCategory(value));
 		return mv;
 	}
 
@@ -73,6 +79,7 @@ public class JolieController {
 	public ModelAndView cart() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("cart");
+		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		return mv;
 	}
@@ -84,18 +91,25 @@ public class JolieController {
 	}
 
 	@PostMapping("/dang-nhap")
-	public String login(ModelMap model, @ModelAttribute("account") Account account, BindingResult result) {
+	public String login(@ModelAttribute("account") Account account, BindingResult result) {
 
 		Account oauthUser = accountService.findByUsernameAndPassword(account.getUsername(), account.getPassword());
-
-		System.out.print(oauthUser);
 		if (Objects.nonNull(oauthUser)) {
 			return "redirect:/trang-chu";
 
 		} else {
-			model.put("ERROR", "Tên đăng nhập hoặc mật khẩu không đúng!");
 			return "redirect:/dang-nhap";
 		}
+	}
+
+	@PostMapping("tim-kiem")
+	public ModelAndView searchProduct(@ModelAttribute("product") Product product, BindingResult result) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("productfilter");
+		mv.addObject("product", new Product());
+		mv.addObject("listCategory", configService.getCategory());
+		mv.addObject("listProduct", productService.searchProducts(product.getName()));
+		return mv;
 	}
 
 	@GetMapping("/dang-ky")

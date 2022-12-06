@@ -19,4 +19,7 @@ public interface ProductDAO extends JpaRepository<Product, Long>{
 	
 	@Query("SELECT p FROM Product p WHERE p.id = ?1")
 	public Product getDetailProduct(Integer id);
+
+	@Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
+	public List<Product> searchProduct(String name);
 }

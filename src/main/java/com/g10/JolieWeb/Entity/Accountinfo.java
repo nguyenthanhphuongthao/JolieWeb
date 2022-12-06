@@ -71,7 +71,7 @@ public class Accountinfo implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "username", nullable = false)
 	public Account getAccount() {
 		return this.account;
@@ -81,7 +81,7 @@ public class Accountinfo implements java.io.Serializable {
 		this.account = account;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "sex")
 	public Config getConfig() {
 		return this.config;
@@ -129,7 +129,7 @@ public class Accountinfo implements java.io.Serializable {
 		this.date02 = date02;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accountinfo")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "accountinfo")
 	public Set<Review> getReviews() {
 		return this.reviews;
 	}
@@ -138,7 +138,7 @@ public class Accountinfo implements java.io.Serializable {
 		this.reviews = reviews;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "accountinfo")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "accountinfo")
 	public Set<Cart> getCarts() {
 		return this.carts;
 	}

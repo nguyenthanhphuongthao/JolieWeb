@@ -76,7 +76,7 @@ public class Account implements java.io.Serializable {
 		this.configByType = configByType;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role", nullable = false)
 	public Config getConfigByRole() {
 		return this.configByRole;
@@ -115,7 +115,7 @@ public class Account implements java.io.Serializable {
 		this.date02 = date02;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
 	public Set<Accountinfo> getAccountinfos() {
 		return this.accountinfos;
 	}

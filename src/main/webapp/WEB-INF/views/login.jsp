@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <jsp:include page="header.jsp"></jsp:include>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
   <link rel="stylesheet" href="css/login-register.css" type="text/css">
   
 
@@ -10,21 +11,22 @@
 </head>
 <body>
   <div class="container">
-    <form action="#">
+    <form:form action="dang-nhap" method ="POST" modelAttribute = "account">
       <div class="title">Đăng nhập</div>
+      <p style="color:red">${ERROR }</p>
       <div class="input-box underline">
-        <input type="text" placeholder="Nhập Email/SĐT" required>
+        <form:input path ="username" placeholder="Nhập Email/SĐT" required="true"/>
         <div class="underline"></div>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Nhập mật khẩu" required>
+        <form:password path ="password" placeholder="Nhập mật khẩu" required= "true"/>
         <div class="underline"></div>
       </div>
 
       <div class="input-box button">
         <input type="submit" name="" value="Đăng nhập">
       </div>
-    </form>
+    </form:form>
     <div class="option">Đăng nhập với</div>
     <div class="google">
       <a href="#"><i class="fab fa-google"></i>Google</a>

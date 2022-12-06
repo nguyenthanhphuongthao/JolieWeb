@@ -1,12 +1,27 @@
 package com.g10.JolieWeb.Controller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.g10.JolieWeb.DAO.AccountDAO;
+import com.g10.JolieWeb.DAO.AccountinfoDAO;
+import com.g10.JolieWeb.Entity.Account;
+import com.g10.JolieWeb.Entity.Accountinfo;
+import com.g10.JolieWeb.Service.AccountServiceImpl;
 import com.g10.JolieWeb.Service.ConfigServiceImpl;
 import com.g10.JolieWeb.Service.ProductServiceImpl;
 
@@ -16,6 +31,8 @@ public class JolieController {
 	private ConfigServiceImpl configService;
 	@Autowired
 	private ProductServiceImpl productService;
+	@Autowired
+	private AccountServiceImpl accountService;
 
 	@RequestMapping(value = { "/", "trang-chu" }, method = RequestMethod.GET)
 	public ModelAndView index() {
@@ -43,7 +60,7 @@ public class JolieController {
 		return mv;
 	}
 
-	@RequestMapping(value = {"tim-kiem", "danh-muc-{value}"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "tim-kiem", "danh-muc-{value}" }, method = RequestMethod.GET)
 	public ModelAndView productfilter(@PathVariable String value) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productfilter");
@@ -60,17 +77,31 @@ public class JolieController {
 		return mv;
 	}
 
-	@RequestMapping(value = "dang-nhap", method = RequestMethod.GET)
-	public ModelAndView login() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("login");
-		return mv;
+	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
+	public String displayLogin(Model model) {
+		model.addAttribute("account", new Account());
+		return "login";
 	}
 
-	@RequestMapping(value = { "dang-ky" }, method = RequestMethod.GET)
-	public ModelAndView register() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("register");
-		return mv;
+	@PostMapping("/dang-nhap")
+	public String login(ModelMap model, @ModelAttribute("account") Account account, BindingResult result) {
+
+		Account oauthUser = accountService.findByUsernameAndPassword(account.getUsername(), account.getPassword());
+
+		System.out.print(oauthUser);
+		if (Objects.nonNull(oauthUser)) {
+			return "redirect:/trang-chu";
+
+		} else {
+			model.put("ERROR", "Tên đăng nhập hoặc mật khẩu không đúng!");
+			return "redirect:/dang-nhap";
+		}
+	}
+
+	@GetMapping("/dang-ky")
+	public String showRegistrationForm(Model model) {
+		model.addAttribute("AccountInfo", new Accountinfo());
+
+		return "register";
 	}
 }

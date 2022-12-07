@@ -66,7 +66,7 @@ public class Account implements java.io.Serializable {
 		this.username = username;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "type", nullable = false)
 	public Config getConfigByType() {
 		return this.configByType;

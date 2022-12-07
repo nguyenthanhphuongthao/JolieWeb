@@ -17,4 +17,9 @@ public class AccountServiceImpl implements AccountService  {
 		Account user = accountDAO.findByUsernameAndPassword(username, password);
 		return user;
 	}
+
+	@Override
+	public void saveAccount(Account account) {
+		accountDAO.save(account);
+	}
 }

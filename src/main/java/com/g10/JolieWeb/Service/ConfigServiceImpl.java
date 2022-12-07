@@ -16,7 +16,11 @@ public class ConfigServiceImpl implements ConfigService {
 	
 	@Override
 	public List<Config> getCategory() {
-		// TODO Auto-generated method stub
 		return configDAO.getCategory();
+	}
+
+	@Override
+	public Config getIdConfig(Integer id) {
+		return configDAO.getIdConfig(id);
 	}
 }

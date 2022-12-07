@@ -9,5 +9,4 @@ public class JolieWebApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JolieWebApplication.class, args);
 	}
-
 }

@@ -7,7 +7,4 @@ import com.g10.JolieWeb.Entity.Accountinfo;
 
 @Repository
 public interface AccountinfoDAO extends JpaRepository<Accountinfo, Long> {
-
-
- 
 }

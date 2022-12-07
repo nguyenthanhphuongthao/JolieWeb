@@ -77,7 +77,7 @@ public class Billinfo implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idCart", nullable = false)
 	public Cart getCart() {
 		return this.cart;
@@ -87,7 +87,7 @@ public class Billinfo implements java.io.Serializable {
 		this.cart = cart;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "paymentMethod", nullable = false)
 	public Config getConfigByPaymentMethod() {
 		return this.configByPaymentMethod;
@@ -97,7 +97,7 @@ public class Billinfo implements java.io.Serializable {
 		this.configByPaymentMethod = configByPaymentMethod;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "shippingMethod", nullable = false)
 	public Config getConfigByShippingMethod() {
 		return this.configByShippingMethod;

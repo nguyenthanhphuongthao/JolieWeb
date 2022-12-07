@@ -10,4 +10,5 @@ import com.g10.JolieWeb.Entity.Config;
 @Service
 public interface ConfigService {
 	List<Config> getCategory();
+	Config getIdConfig(Integer id);
 }

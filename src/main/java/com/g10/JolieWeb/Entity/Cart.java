@@ -62,7 +62,7 @@ public class Cart implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idUser", nullable = false)
 	public Accountinfo getAccountinfo() {
 		return this.accountinfo;
@@ -90,7 +90,7 @@ public class Cart implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart")
 	public Set<Detailcart> getDetailcarts() {
 		return this.detailcarts;
 	}
@@ -99,7 +99,7 @@ public class Cart implements java.io.Serializable {
 		this.detailcarts = detailcarts;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart")
 	public Set<Billinfo> getBillinfos() {
 		return this.billinfos;
 	}

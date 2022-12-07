@@ -1,29 +1,24 @@
 package com.g10.JolieWeb.Controller;
 
-import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.g10.JolieWeb.DAO.AccountDAO;
-import com.g10.JolieWeb.DAO.AccountinfoDAO;
 import com.g10.JolieWeb.Entity.Account;
 import com.g10.JolieWeb.Entity.Accountinfo;
 import com.g10.JolieWeb.Entity.Product;
 import com.g10.JolieWeb.Service.AccountServiceImpl;
+import com.g10.JolieWeb.Service.AccountinfoServiceImpl;
 import com.g10.JolieWeb.Service.ConfigServiceImpl;
 import com.g10.JolieWeb.Service.ProductServiceImpl;
 
@@ -35,6 +30,8 @@ public class JolieController {
 	private ProductServiceImpl productService;
 	@Autowired
 	private AccountServiceImpl accountService;
+	@Autowired
+	private AccountinfoServiceImpl accountInfoService;
 
 	@RequestMapping(value = { "/", "trang-chu" }, method = RequestMethod.GET)
 	public ModelAndView index() {
@@ -84,19 +81,18 @@ public class JolieController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
+	@RequestMapping(value = "dang-nhap", method = RequestMethod.GET)
 	public String displayLogin(Model model) {
 		model.addAttribute("account", new Account());
 		return "login";
 	}
 
-	@PostMapping("/dang-nhap")
+	@PostMapping("dang-nhap")
 	public String login(@ModelAttribute("account") Account account, BindingResult result) {
 
 		Account oauthUser = accountService.findByUsernameAndPassword(account.getUsername(), account.getPassword());
 		if (Objects.nonNull(oauthUser)) {
 			return "redirect:/trang-chu";
-
 		} else {
 			return "redirect:/dang-nhap";
 		}
@@ -112,10 +108,21 @@ public class JolieController {
 		return mv;
 	}
 
-	@GetMapping("/dang-ky")
-	public String showRegistrationForm(Model model) {
-		model.addAttribute("AccountInfo", new Accountinfo());
-
+	@RequestMapping(value = "dang-ky", method = RequestMethod.GET)
+	public String showFormForAdd(Model model) {
+		model.addAttribute("accountInfo", new Accountinfo());
 		return "register";
 	}
+
+	@PostMapping("dang-ky")
+	public String saveCustomer(@Validated @ModelAttribute("accountInfo") Accountinfo accountInfo, BindingResult result) {
+		Account acc = new Account();
+		acc = accountInfo.getAccount();
+		acc.setConfigByRole(configService.getIdConfig(2));
+		acc.setConfigByType(configService.getIdConfig(5));
+		accountService.saveAccount(acc);
+		accountInfoService.saveAccountInfo(accountInfo);
+		return "redirect:/trang-chu";
+	}
+
 }

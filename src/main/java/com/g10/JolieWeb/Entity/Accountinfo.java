@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -71,7 +72,7 @@ public class Accountinfo implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "username", nullable = false)
 	public Account getAccount() {
 		return this.account;
@@ -128,8 +129,7 @@ public class Accountinfo implements java.io.Serializable {
 	public void setDate02(Date date02) {
 		this.date02 = date02;
 	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "accountinfo")
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "accountinfo")
 	public Set<Review> getReviews() {
 		return this.reviews;
 	}

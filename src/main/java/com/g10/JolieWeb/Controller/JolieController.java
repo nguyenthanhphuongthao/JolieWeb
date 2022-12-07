@@ -16,10 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.g10.JolieWeb.Entity.Account;
 import com.g10.JolieWeb.Entity.Accountinfo;
+import com.g10.JolieWeb.Entity.Cart;
 import com.g10.JolieWeb.Entity.Product;
 import com.g10.JolieWeb.Service.AccountServiceImpl;
 import com.g10.JolieWeb.Service.AccountinfoServiceImpl;
+import com.g10.JolieWeb.Service.CartServiceImpl;
 import com.g10.JolieWeb.Service.ConfigServiceImpl;
+import com.g10.JolieWeb.Service.DetailcartServiceImpl;
 import com.g10.JolieWeb.Service.ProductServiceImpl;
 
 @Controller
@@ -32,11 +35,18 @@ public class JolieController {
 	private AccountServiceImpl accountService;
 	@Autowired
 	private AccountinfoServiceImpl accountInfoService;
+	@Autowired
+	private CartServiceImpl cartService;
+	@Autowired
+	private DetailcartServiceImpl detailcartService;
+	
+	Accountinfo loginAccount = new Accountinfo();
 
 	@RequestMapping(value = { "/", "trang-chu" }, method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
+		mv.addObject("loginAccount", loginAccount);
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		mv.addObject("listProduct", productService.getProduct());
@@ -47,6 +57,7 @@ public class JolieController {
 	public ModelAndView checkout() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("checkout");
+		mv.addObject("loginAccount", loginAccount);
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		return mv;
@@ -56,6 +67,7 @@ public class JolieController {
 	public ModelAndView productdetail(@PathVariable Integer id) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productdetail");
+		mv.addObject("loginAccount", loginAccount);
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		mv.addObject("detailProduct", productService.getDetailProduct(id));
@@ -66,6 +78,7 @@ public class JolieController {
 	public ModelAndView productfilter(@PathVariable String value) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productfilter");
+		mv.addObject("loginAccount", loginAccount);
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		mv.addObject("listProduct", productService.getProductbyCategory(value));
@@ -78,9 +91,15 @@ public class JolieController {
 		mv.setViewName("cart");
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
+		mv.addObject("loginAccount", loginAccount);
+		Cart c = new Cart();
+		c = cartService.getCart(loginAccount.getId(), 0);
+		if (c != null){
+			mv.addObject("cartInfo", c);
+			mv.addObject("listCart", detailcartService.getDetailcarts(cartService.getCart(loginAccount.getId(), 0).getId()));
+		}
 		return mv;
 	}
-
 	@RequestMapping(value = "dang-nhap", method = RequestMethod.GET)
 	public String displayLogin(Model model) {
 		model.addAttribute("account", new Account());
@@ -90,8 +109,9 @@ public class JolieController {
 	@PostMapping("dang-nhap")
 	public String login(@ModelAttribute("account") Account account, BindingResult result) {
 
-		Account oauthUser = accountService.findByUsernameAndPassword(account.getUsername(), account.getPassword());
-		if (Objects.nonNull(oauthUser)) {
+		Account acc = accountService.findByUsernameAndPassword(account.getUsername(), account.getPassword());
+		if (Objects.nonNull(acc)) {
+			loginAccount = acc.getAccountinfo();
 			return "redirect:/trang-chu";
 		} else {
 			return "redirect:/dang-nhap";
@@ -103,6 +123,7 @@ public class JolieController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("productfilter");
 		mv.addObject("product", new Product());
+		mv.addObject("loginAccount", loginAccount);
 		mv.addObject("listCategory", configService.getCategory());
 		mv.addObject("listProduct", productService.searchProducts(product.getName()));
 		return mv;
@@ -122,6 +143,7 @@ public class JolieController {
 		acc.setConfigByType(configService.getIdConfig(5));
 		accountService.saveAccount(acc);
 		accountInfoService.saveAccountInfo(accountInfo);
+		loginAccount = accountInfo;
 		return "redirect:/trang-chu";
 	}
 

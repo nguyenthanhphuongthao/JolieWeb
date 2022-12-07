@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
@@ -36,18 +37,25 @@
 			<div class="col-lg-9">
 				<div class="hero__search">
 					<div class="hero__search__form">
-						<form:form action="tim-kiem" method="POST" modelAttribute="product">
+						<form:form action="tim-kiem" method="POST"
+							modelAttribute="product">
 							<div class="hero__search__categories">
 								All Categories <span class="arrow_carrot-down"></span>
 							</div>
-							<form:input path="name" placeholder="Bạn muốn tìm kiếm sản phẩm nào?"/>
+							<form:input path="name" placeholder="Bạn muốn tìm kiếm sản phẩm nào?" />
 							<button type="submit" class="site-btn">Tìm kiếm</button>
 						</form:form>
 					</div>
 					<div class="header__cart">
 						<ul>
-							<li><a href="dang-nhap"><i class="fa fa-user"> Đăng
-										nhập</i></a></li>
+							<c:choose>
+								<c:when test="${loginAccount.name == null}">
+									<li><a href="dang-nhap"><i class="fa fa-user">Đăng nhập</i></a></li>
+								</c:when>
+								<c:when test="${loginAccount.name != null}">
+									<li><a href="gio-hang"><i class="fa fa-user">${loginAccount.name}</i></a></li>
+								</c:when>
+							</c:choose>
 							<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>
 							<li><a href="trang-chu"><i class="fa fa-sign-out"></i></a></li>
 						</ul>

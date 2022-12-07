@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.g10.JolieWeb.Entity.Config;
 
 
-
 @Repository
 public interface ConfigDAO extends JpaRepository <Config, Long>{
 

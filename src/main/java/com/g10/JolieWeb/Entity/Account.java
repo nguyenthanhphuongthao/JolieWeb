@@ -3,15 +3,13 @@ package com.g10.JolieWeb.Entity;
 // Generated Dec 2, 2022, 3:53:02 PM by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,7 +31,7 @@ public class Account implements java.io.Serializable {
 	private String password;
 	private Date date01;
 	private Date date02;
-	private Set<Accountinfo> accountinfos = new HashSet<Accountinfo>(0);
+	private Accountinfo accountinfo;
 
 	public Account() {
 	}
@@ -45,14 +43,14 @@ public class Account implements java.io.Serializable {
 	}
 
 	public Account(String username, Config configByType, Config configByRole, String password, Date date01, Date date02,
-			Set<Accountinfo> accountinfos) {
+			Accountinfo accountinfo) {
 		this.username = username;
 		this.configByType = configByType;
 		this.configByRole = configByRole;
 		this.password = password;
 		this.date01 = date01;
 		this.date02 = date02;
-		this.accountinfos = accountinfos;
+		this.accountinfo = accountinfo;
 	}
 
 	@Id
@@ -115,13 +113,13 @@ public class Account implements java.io.Serializable {
 		this.date02 = date02;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
-	public Set<Accountinfo> getAccountinfos() {
-		return this.accountinfos;
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "account")
+	public Accountinfo getAccountinfo() {
+		return this.accountinfo;
 	}
 
-	public void setAccountinfos(Set<Accountinfo> accountinfos) {
-		this.accountinfos = accountinfos;
+	public void setAccountinfo(Accountinfo accountinfo) {
+this.accountinfo = accountinfo;
 	}
 
 }

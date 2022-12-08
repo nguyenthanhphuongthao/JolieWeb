@@ -36,9 +36,10 @@ public class Cart implements java.io.Serializable {
 	public Cart() {
 	}
 
-	public Cart(Accountinfo accountinfo, float totalPrice) {
+	public Cart(Accountinfo accountinfo) {
 		this.accountinfo = accountinfo;
-		this.totalPrice = totalPrice;
+		this.totalPrice = 0;
+		this.status = 0;
 	}
 
 	public Cart(Accountinfo accountinfo, float totalPrice, Integer status, Set<Detailcart> detailcarts,

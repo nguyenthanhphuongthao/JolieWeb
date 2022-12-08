@@ -46,7 +46,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="#" class="primary-btn">Thêm vào giỏ hàng</a> <a href="#"
+						<a href="them-vao-gio-hang-${detailProduct.product.id}" class="primary-btn">Thêm vào giỏ hàng</a> <a href="#"
 							class="heart-icon"><span class="icon_heart_alt"></span></a>
 						<ul>
 							<li><b>Availability</b> <span>In Stock</span></li>

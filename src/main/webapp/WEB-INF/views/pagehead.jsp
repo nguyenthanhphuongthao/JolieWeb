@@ -42,7 +42,8 @@
 							<div class="hero__search__categories">
 								All Categories <span class="arrow_carrot-down"></span>
 							</div>
-							<form:input path="name" placeholder="Bạn muốn tìm kiếm sản phẩm nào?" />
+							<form:input path="name"
+								placeholder="Bạn muốn tìm kiếm sản phẩm nào?" />
 							<button type="submit" class="site-btn">Tìm kiếm</button>
 						</form:form>
 					</div>
@@ -54,10 +55,11 @@
 								</c:when>
 								<c:when test="${loginAccount.name != null}">
 									<li><a href="gio-hang"><i class="fa fa-user">${loginAccount.name}</i></a></li>
+									<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>
+									<li><a href="dang-xuat"><i class="fa fa-sign-out"></i></a></li>
 								</c:when>
 							</c:choose>
-							<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>
-							<li><a href="trang-chu"><i class="fa fa-sign-out"></i></a></li>
+
 						</ul>
 					</div>
 				</div>

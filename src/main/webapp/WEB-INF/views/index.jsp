@@ -38,7 +38,7 @@
 								data-setbg="${c.media.folder}/${c.media.fileName}">
 								<ul class="featured__item__pic__hover">
 									<li><a href="#"><i class="fa fa-heart"></i></a></li>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+									<li><a href="them-vao-gio-hang-${c.id}"><i class="fa fa-shopping-cart"></i></a></li>
 								</ul>
 							</div>
 							<div class="featured__item__text">

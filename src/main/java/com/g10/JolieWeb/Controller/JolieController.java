@@ -197,7 +197,7 @@ public class JolieController {
 		}
 		return -1;
 	}
-	
+
 	@RequestMapping(value = "xoa-san-pham-{id}", method = RequestMethod.GET)
 	public String removeItemCart(@PathVariable("id") Integer idProduct, HttpSession session) {
 		Cart cart = (Cart) session.getAttribute("cart");
@@ -209,24 +209,60 @@ public class JolieController {
 		session.setAttribute("cart", cart);
 		return "redirect:/gio-hang";
 	}
-	
+
 	@RequestMapping(value = "giam-so-luong-san-pham-{id}", method = RequestMethod.GET)
 	public String updateCart(@PathVariable("id") Integer idProduct, HttpSession session) {
 		Cart cart = (Cart) session.getAttribute("cart");
 		Product product = productService.getDetailProduct(idProduct);
 		Detailcart detailcart = detailcartService.getDetailcart(cart, product);
-		if (detailcart.getQuantity() > 1)
-		{
+		if (detailcart.getQuantity() > 1) {
 			detailcart.setTotalPrice(detailcart.getTotalPrice() - detailcart.getProduct().getPrice());
 			detailcart.setQuantity(detailcart.getQuantity() - 1);
 			detailcartService.saveDetailcart(detailcart);
-		}
-		else {
+		} else {
 			detailcartService.deleteDetailcart(detailcart);
 		}
 		cart.setTotalPrice(cart.getTotalPrice() - detailcart.getProduct().getPrice());
 		cartService.saveCart(cart);
 		session.setAttribute("cart", cart);
 		return "redirect:/gio-hang";
+	}
+
+	@RequestMapping(value = "thong-tin", method = RequestMethod.GET)
+	public String AccountInfo(Model model, HttpSession session) {
+	model.addAttribute("accountInfo", session.getAttribute("loginAccount"));
+		return "AccountInfo";
+	}
+
+	@PostMapping("thong-tin")
+	public String ChangePass(@ModelAttribute("accountInfo") Accountinfo accountInfo, BindingResult result,
+			HttpSession session) {
+
+		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");
+		
+		Account account = loginAccount.getAccount();
+		loginAccount.setAddress(accountInfo.getAddress());
+		
+		loginAccount.setName(accountInfo.getName());
+		loginAccount.getConfig().setId(accountInfo.getConfig().getId());
+		if(accountInfo.getBirth() == null)
+		{
+			loginAccount.setBirth(loginAccount.getBirth());
+		}
+		else {
+			loginAccount.setBirth(accountInfo.getBirth());
+		}
+		
+		if (accountInfo.getAccount().getPassword() == "") {
+			account.setPassword(loginAccount.getAccount().getPassword());	
+		}
+		else {
+			account.setPassword(accountInfo.getAccount().getPassword());
+		}
+		
+		accountService.saveAccount(account);
+
+		accountInfoService.saveAccountInfo(loginAccount);
+		return "redirect:/trang-chu";
 	}
 }

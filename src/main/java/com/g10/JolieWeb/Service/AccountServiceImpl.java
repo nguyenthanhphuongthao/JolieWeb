@@ -14,12 +14,16 @@ public class AccountServiceImpl implements AccountService  {
 
 	@Override
 	public Account findByUsernameAndPassword(String username, String password) {
-		Account user = accountDAO.findByUsernameAndPassword(username, password);
-		return user;
+		return accountDAO.findByUsernameAndPassword(username, password);
 	}
 
 	@Override
 	public void saveAccount(Account account) {
 		accountDAO.save(account);
+	}
+
+	@Override
+	public Account findByUsername(String username) {
+		return accountDAO.findByUsername(username);
 	}
 }

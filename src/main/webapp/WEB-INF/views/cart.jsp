@@ -25,6 +25,7 @@
 	<!-- Shoping Cart Section Begin -->
 	<section class="shoping-cart spad">
 		<div class="container">
+		<div style="font-size: 20px; color: red; margin-bottom: 10px;"><strong>${alert}</strong></div>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="shoping__cart__table">

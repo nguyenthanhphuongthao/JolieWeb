@@ -289,7 +289,7 @@ public class JolieController {
 	model.addAttribute("accountInfo", session.getAttribute("loginAccount"));
 	model.addAttribute("product", new Product());
 	model.addAttribute("listCategory", configService.getCategory());
-		return "AccountInfo";
+		return "accountInfo";
 	}
 
 	@PostMapping("thong-tin")
@@ -328,6 +328,14 @@ public class JolieController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("product", new Product());
 		mv.setViewName("favourite");
+		mv.addObject("listCategory", configService.getCategory());
+		return mv;
+	}
+	@RequestMapping(value = "don-hang", method = RequestMethod.GET)
+	public ModelAndView OderBill() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("product", new Product());
+		mv.setViewName("Order");
 		mv.addObject("listCategory", configService.getCategory());
 		return mv;
 	}

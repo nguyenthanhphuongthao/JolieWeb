@@ -5,13 +5,13 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
 <link rel="stylesheet" href="css/style.css" type="text/css">
-<link rel="stylesheet" href="css/favourite.css" type="text/css">
+<link rel="stylesheet" href="css/mnAccount.css" type="text/css">
 <script type="text/javascript">
 	function dieu_huong1() {
-		location.assign("thong-tin");
+		location.assign("thong-tin-tai-khoan");
 	}
 	function dieu_huong2() {
-		location.assign("don-hang");
+		location.assign("quan-ly-don-hang");
 	}
 </script>
 
@@ -23,27 +23,25 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-5">
-					<div class="sidebar__item_3">
+					<div class="sidebar__item_2">
 						<h4>
-							<strong>Danh sách sản phẩm yêu thích</strong>
+							<strong>Danh sách yêu thích</strong>
 						</h4>
 						<!-- Tab links -->
-						<div class="navs">
-							<button class="navs_link " onclick="dieu_huong1()"
+						<div class="tabs">
+							<button class="tablinks " onclick="dieu_huong1()"
 								data-electronic="allproducts">Thông tin tài khoản</button>
-							<button class="navs_link "
+							<button class="tablinks "
 								data-electronic="Microcontrollers"
 								 onclick="dieu_huong2()">Quản lý đơn hàng</button>
 
-							<button class="navs_link_nav_active" 
-								data-electronic="module">Danh sách sản phẩm yêu thích</button>
+							<button class="tablinks_active" 
+								data-electronic="module">Danh sách yêu thích</button>
 						</div>
 					</div>
 
 				</div>
 				<div class="col-lg-9">
-
-
 					<form class="order_item">
 						<table id="keywords" cellspacing="0" cellpadding="0">
 							<thead>
@@ -51,6 +49,7 @@
 									<th><span>Sản phẩm</span></th>
 									<th><span> Trạng thái </span></th>
 									<th><span>Đơn giá </span></th>
+									<th></th>
 									<th></th>
 
 								</tr>
@@ -63,8 +62,8 @@
 										<h5>Tẩy trang Bioderma</h5></td>
 									<td class="pro_quantity">còn hàng</td>
 									<td class="pro_price">200000</td>
-									<td><button><a href="gio-hang">Thêm vào giỏ
-											hàng</a></button></td>
+									<td><i><a href="gio-hang"><i class="fa fa-shopping-bag"  style="color: black;"></i></td>
+										<td ><a href="#"><span class="icon_close" style="color: #b2b2b2;"></span></a></td>
 								</tr>
 								<tr>
 									<td class="pro_name"><img
@@ -72,8 +71,8 @@
 										<h5>Kem chống nắng sunplay</h5></td>
 									<td class="pro_quantity">còn hàng</td>
 									<td class="pro_price">200000</td>
-									<td><button><a href="gio-hang">Thêm vào giỏ
-											hàng</a></button></td>
+									<td><a href="gio-hang"><i class="fa fa-shopping-bag" style="color: black;"></i></a></td>
+									<td ><a href="#"><span class="icon_close"  style="color: #b2b2b2;"></span></a></td>
 								</tr>
 							</tbody>
 

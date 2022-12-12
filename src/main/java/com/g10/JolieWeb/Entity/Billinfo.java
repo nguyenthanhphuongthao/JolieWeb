@@ -11,6 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -77,7 +78,7 @@ public class Billinfo implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne (fetch = FetchType.EAGER)
 	@JoinColumn(name = "idCart", nullable = false)
 	public Cart getCart() {
 		return this.cart;

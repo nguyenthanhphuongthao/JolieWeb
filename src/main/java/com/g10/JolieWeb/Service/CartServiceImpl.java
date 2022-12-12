@@ -1,5 +1,7 @@
 package com.g10.JolieWeb.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,11 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void saveCart(Cart cart) {
 		cartDAO.save(cart);
+	}
+
+	@Override
+	public List<Cart> getListCart(Integer idAccount, Integer status) {
+		return cartDAO.getListCart(idAccount, status);
 	}
 
 }

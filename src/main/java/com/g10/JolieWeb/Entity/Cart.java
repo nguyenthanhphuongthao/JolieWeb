@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -31,7 +32,7 @@ public class Cart implements java.io.Serializable {
 	private float totalPrice;
 	private Integer status;
 	private Set<Detailcart> detailcarts = new HashSet<Detailcart>(0);
-	private Set<Billinfo> billinfos = new HashSet<Billinfo>(0);
+	private Billinfo billinfo;
 
 	public Cart() {
 	}
@@ -43,12 +44,12 @@ public class Cart implements java.io.Serializable {
 	}
 
 	public Cart(Accountinfo accountinfo, float totalPrice, Integer status, Set<Detailcart> detailcarts,
-			Set<Billinfo> billinfos) {
+			Billinfo billinfo) {
 		this.accountinfo = accountinfo;
 		this.totalPrice = totalPrice;
 		this.status = status;
 		this.detailcarts = detailcarts;
-		this.billinfos = billinfos;
+		this.billinfo = billinfo;
 	}
 
 	@Id
@@ -100,13 +101,13 @@ public class Cart implements java.io.Serializable {
 		this.detailcarts = detailcarts;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart")
-	public Set<Billinfo> getBillinfos() {
-		return this.billinfos;
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "cart")
+	public Billinfo getBillinfo() {
+		return this.billinfo;
 	}
 
-	public void setBillinfos(Set<Billinfo> billinfos) {
-		this.billinfos = billinfos;
+	public void setBillinfo(Billinfo billinfo) {
+		this.billinfo = billinfo;
 	}
 
 }

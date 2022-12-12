@@ -1,16 +1,15 @@
 package com.g10.JolieWeb.Controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +30,6 @@ import com.g10.JolieWeb.Service.CartServiceImpl;
 import com.g10.JolieWeb.Service.ConfigServiceImpl;
 import com.g10.JolieWeb.Service.DetailcartServiceImpl;
 import com.g10.JolieWeb.Service.ProductServiceImpl;
-
-import lombok.experimental.var;
 
 @Controller
 public class JolieController {
@@ -104,6 +101,9 @@ public class JolieController {
 		billinfo.setCart(cart);
 		billinfo.setStatus(1);
 		billinfo.setTotalPrice(cart.getTotalPrice());
+		long millis = System.currentTimeMillis();  
+		Date date = new Date(millis);
+		billinfo.setDatePayment(date);
 		billinfoService.saveBillinfo(billinfo);
 		cartService.saveCart(cart);
 		session.removeAttribute("cart");
@@ -293,7 +293,7 @@ public class JolieController {
 		return "redirect:/gio-hang";
 	}
 
-	@RequestMapping(value = "thong-tin", method = RequestMethod.GET)
+	@RequestMapping(value = "thong-tin-tai-khoan", method = RequestMethod.GET)
 	public String AccountInfo(Model model, HttpSession session) {
 		model.addAttribute("accountInfo", session.getAttribute("loginAccount"));
 		model.addAttribute("product", new Product());
@@ -301,7 +301,7 @@ public class JolieController {
 		return "accountInfo";
 	}
 
-	@PostMapping("thong-tin")
+	@PostMapping("thong-tin-tai-khoan")
 	public String ChangePass(@ModelAttribute("accountInfo") Accountinfo accountInfo, BindingResult result,
 			HttpSession session) {
 		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");
@@ -321,24 +321,26 @@ public class JolieController {
 		}
 		accountService.saveAccount(account);
 		accountInfoService.saveAccountInfo(loginAccount);
-		return "redirect:/trang-chu";
+		return "redirect:/thong-tin-tai-khoan";
 	}
 	
-	@RequestMapping(value = "yeu-thich", method = RequestMethod.GET)
+	@RequestMapping(value = "danh-sach-yeu-thich", method = RequestMethod.GET)
 	public ModelAndView Favourite() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("product", new Product());
 		mv.setViewName("favourite");
+		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		return mv;
 	}
 	
-	@RequestMapping(value = "don-hang", method = RequestMethod.GET)
-	public ModelAndView OderBill() {
+	@RequestMapping(value = "quan-ly-don-hang", method = RequestMethod.GET)
+	public ModelAndView OrderBill(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("order");
 		mv.addObject("product", new Product());
-		mv.setViewName("Order");
 		mv.addObject("listCategory", configService.getCategory());
+		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");
+		mv.addObject("listBill", cartService.getListCart(loginAccount.getId(), 1));
 		return mv;
 	}
 }

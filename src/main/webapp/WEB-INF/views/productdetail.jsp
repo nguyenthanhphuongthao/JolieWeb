@@ -33,7 +33,8 @@
 								class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 								class="fa fa-star-half-o"></i> <span>(18 reviews)</span>
 						</div>
-						<div class="product__details__price">${detailProduct.price} VNĐ</div>
+						<div class="product__details__price">${detailProduct.price}
+							VNĐ</div>
 						<p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar
 							a. Vestibulum ac diam sit amet quam vehicula elementum sed sit
 							amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
@@ -46,11 +47,13 @@
 								</div>
 							</div>
 						</div>
-						<a href="them-vao-gio-hang-${detailProduct.product.id}" class="primary-btn">Thêm vào giỏ hàng</a> <a href="#"
+						<a href="them-vao-gio-hang-${detailProduct.id}"
+							class="primary-btn">Thêm vào giỏ hàng</a> <a href="#"
 							class="heart-icon"><span class="icon_heart_alt"></span></a>
 						<ul>
 							<li><b>Availability</b> <span>In Stock</span></li>
-							<li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
+							<li><b>Shipping</b> <span>01 day shipping. <samp>Free
+										pickup today</samp></span></li>
 						</ul>
 					</div>
 				</div>
@@ -58,10 +61,11 @@
 					<div class="product__details__tab">
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="nav-item"><a class="nav-link active"
-								data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Mô tả</a></li>
+								data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Mô
+									tả</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#tabs-2" role="tab" aria-selected="false">Thông tin sản phẩm</a>
-							</li>
+								href="#tabs-2" role="tab" aria-selected="false">Thông tin
+									sản phẩm</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
 								href="#tabs-3" role="tab" aria-selected="false">Đánh giá <span>(1)</span></a>
 							</li>
@@ -104,6 +108,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- Product Details Section End -->
 

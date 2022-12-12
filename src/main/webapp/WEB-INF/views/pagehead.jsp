@@ -54,7 +54,11 @@
 									<li><a href="dang-nhap"><i class="fa fa-user"> Đăng nhập</i></a></li>
 								</c:when>
 								<c:when test="${loginAccount.name != null}">
+<<<<<<< HEAD
 									<li><a href="thong-tin"><i class="fa fa-user"> ${loginAccount.name}</i></a></li>
+=======
+									<li><a href="thong-tin"><i class="fa fa-user">${loginAccount.name}</i></a></li>
+>>>>>>> 4d1650a56d63e149bb3f6c6ef8caed6ea0d6b74b
 									<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>
 									<li><a href="dang-xuat"><i class="fa fa-sign-out"></i></a></li>
 								</c:when>

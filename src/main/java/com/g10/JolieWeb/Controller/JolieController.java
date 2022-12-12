@@ -287,9 +287,13 @@ public class JolieController {
 	@RequestMapping(value = "thong-tin", method = RequestMethod.GET)
 	public String AccountInfo(Model model, HttpSession session) {
 	model.addAttribute("accountInfo", session.getAttribute("loginAccount"));
+<<<<<<< HEAD
 	model.addAttribute("product", new Product());
 	model.addAttribute("listCategory", configService.getCategory());
 		return "accountInfo";
+=======
+		return "AccountInfo";
+>>>>>>> 4d1650a56d63e149bb3f6c6ef8caed6ea0d6b74b
 	}
 
 	@PostMapping("thong-tin")
@@ -323,6 +327,7 @@ public class JolieController {
 		accountInfoService.saveAccountInfo(loginAccount);
 		return "redirect:/trang-chu";
 	}
+<<<<<<< HEAD
 	@RequestMapping(value = "yeu-thich", method = RequestMethod.GET)
 	public ModelAndView Favourite() {
 		ModelAndView mv = new ModelAndView();
@@ -339,4 +344,6 @@ public class JolieController {
 		mv.addObject("listCategory", configService.getCategory());
 		return mv;
 	}
+=======
+>>>>>>> 4d1650a56d63e149bb3f6c6ef8caed6ea0d6b74b
 }

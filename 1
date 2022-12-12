@@ -1,0 +1,129 @@
+[1mdiff --cc src/main/java/com/g10/JolieWeb/Controller/JolieController.java[m
+[1mindex 783207a,e328329..0000000[m
+[1m--- a/src/main/java/com/g10/JolieWeb/Controller/JolieController.java[m
+[1m+++ b/src/main/java/com/g10/JolieWeb/Controller/JolieController.java[m
+[36m@@@ -100,7 -100,6 +100,10 @@@[m [mpublic class JolieController [m
+  			product.setInventory(product.getInventory() - quantity);[m
+  			productService.saveProduct(product);[m
+  		}[m
+[32m++<<<<<<< HEAD[m
+[32m +		session.setAttribute("numDetailcart", 0);[m
+[32m++=======[m
+[32m++>>>>>>> 0512870439c7c3a9905f82f3df36e9c7ff4c7c3a[m
+  		billinfo.setCart(cart);[m
+  		billinfo.setStatus(1);[m
+  		billinfo.setTotalPrice(cart.getTotalPrice());[m
+[36m@@@ -295,30 -286,64 +298,91 @@@[m
+  [m
+  	@RequestMapping(value = "thong-tin", method = RequestMethod.GET)[m
+  	public String AccountInfo(Model model, HttpSession session) {[m
+[32m++<<<<<<< HEAD[m
+[32m +		model.addAttribute("accountInfo", session.getAttribute("loginAccount"));[m
+[32m +		return "accountInfo";[m
+[32m++=======[m
+[32m+ 	model.addAttribute("accountInfo", session.getAttribute("loginAccount"));[m
+[32m+ <<<<<<< HEAD[m
+[32m+ 	model.addAttribute("product", new Product());[m
+[32m+ 	model.addAttribute("listCategory", configService.getCategory());[m
+[32m+ 		return "accountInfo";[m
+[32m+ =======[m
+[32m+ 		return "AccountInfo";[m
+[32m+ >>>>>>> 4d1650a56d63e149bb3f6c6ef8caed6ea0d6b74b[m
+[32m++>>>>>>> 0512870439c7c3a9905f82f3df36e9c7ff4c7c3a[m
+  	}[m
+  [m
+  	@PostMapping("thong-tin")[m
+  	public String ChangePass(@ModelAttribute("accountInfo") Accountinfo accountInfo, BindingResult result,[m
+  			HttpSession session) {[m
+[32m++<<<<<<< HEAD[m
+[32m +		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");[m
+[32m +		Account account = loginAccount.getAccount();[m
+[32m +		loginAccount.setAddress(accountInfo.getAddress());[m
+[32m +		loginAccount.setName(accountInfo.getName());[m
+[32m +		loginAccount.getConfig().setId(accountInfo.getConfig().getId());[m
+[32m +		if (accountInfo.getBirth() == null) {[m
+[32m +			loginAccount.setBirth(loginAccount.getBirth());[m
+[32m +		} else {[m
+[32m +			loginAccount.setBirth(accountInfo.getBirth());[m
+[32m +		}[m
+[32m +		if (accountInfo.getAccount().getPassword() == "") {[m
+[32m +			account.setPassword(loginAccount.getAccount().getPassword());[m
+[32m +		} else {[m
+[32m +			account.setPassword(accountInfo.getAccount().getPassword());[m
+[32m +		}[m
+[32m +		accountService.saveAccount(account);[m
+[32m +		accountInfoService.saveAccountInfo(loginAccount);[m
+[32m +		return "redirect:/trang-chu";[m
+[32m +	}[m
+[32m++=======[m
+[32m+ [m
+[32m+ 		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");[m
+[32m+ 		[m
+[32m+ 		Account account = loginAccount.getAccount();[m
+[32m+ 		loginAccount.setAddress(accountInfo.getAddress());[m
+[32m+ 		[m
+[32m+ 		loginAccount.setName(accountInfo.getName());[m
+[32m+ 		loginAccount.getConfig().setId(accountInfo.getConfig().getId());[m
+[32m+ 		if(accountInfo.getBirth() == null)[m
+[32m+ 		{[m
+[32m+ 			loginAccount.setBirth(loginAccount.getBirth());[m
+[32m+ 		}[m
+[32m+ 		else {[m
+[32m+ 			loginAccount.setBirth(accountInfo.getBirth());[m
+[32m+ 		}[m
+[32m+ 		[m
+[32m+ 		if (accountInfo.getAccount().getPassword() == "") {[m
+[32m+ 			account.setPassword(loginAccount.getAccount().getPassword());	[m
+[32m+ 		}[m
+[32m+ 		else {[m
+[32m+ 			account.setPassword(accountInfo.getAccount().getPassword());[m
+[32m+ 		}[m
+[32m+ 		[m
+[32m+ 		accountService.saveAccount(account);[m
+[32m+ [m
+[32m+ 		accountInfoService.saveAccountInfo(loginAccount);[m
+[32m+ 		return "redirect:/trang-chu";[m
+[32m+ 	}[m
+[32m+ <<<<<<< HEAD[m
+[32m+ 	@RequestMapping(value = "yeu-thich", method = RequestMethod.GET)[m
+[32m+ 	public ModelAndView Favourite() {[m
+[32m+ 		ModelAndView mv = new ModelAndView();[m
+[32m+ 		mv.addObject("product", new Product());[m
+[32m+ 		mv.setViewName("favourite");[m
+[32m+ 		mv.addObject("listCategory", configService.getCategory());[m
+[32m+ 		return mv;[m
+[32m+ 	}[m
+[32m+ 	@RequestMapping(value = "don-hang", method = RequestMethod.GET)[m
+[32m+ 	public ModelAndView OderBill() {[m
+[32m+ 		ModelAndView mv = new ModelAndView();[m
+[32m+ 		mv.addObject("product", new Product());[m
+[32m+ 		mv.setViewName("Order");[m
+[32m+ 		mv.addObject("listCategory", configService.getCategory());[m
+[32m+ 		return mv;[m
+[32m+ 	}[m
+[32m+ =======[m
+[32m+ >>>>>>> 4d1650a56d63e149bb3f6c6ef8caed6ea0d6b74b[m
+[32m++>>>>>>> 0512870439c7c3a9905f82f3df36e9c7ff4c7c3a[m
+  }[m
+[1mdiff --cc src/main/webapp/WEB-INF/views/pagehead.jsp[m
+[1mindex 5ba12ab,88f6dd4..0000000[m
+[1m--- a/src/main/webapp/WEB-INF/views/pagehead.jsp[m
+[1m+++ b/src/main/webapp/WEB-INF/views/pagehead.jsp[m
+[36m@@@ -54,8 -54,12 +54,17 @@@[m
+  									<li><a href="dang-nhap"><i class="fa fa-user"> Đăng nhập</i></a></li>[m
+  								</c:when>[m
+  								<c:when test="${loginAccount.name != null}">[m
+[32m++<<<<<<< HEAD[m
+[32m +									<li><a href="thong-tin"><i class="fa fa-user"> ${loginAccount.name}</i></a></li>[m
+[32m +									<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>${numDetailcart}</span></a></li>[m
+[32m++=======[m
+[32m+ <<<<<<< HEAD[m
+[32m+ 									<li><a href="thong-tin"><i class="fa fa-user"> ${loginAccount.name}</i></a></li>[m
+[32m+ =======[m
+[32m+ 									<li><a href="thong-tin"><i class="fa fa-user">${loginAccount.name}</i></a></li>[m
+[32m+ >>>>>>> 4d1650a56d63e149bb3f6c6ef8caed6ea0d6b74b[m
+[32m+ 									<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>[m
+[32m++>>>>>>> 0512870439c7c3a9905f82f3df36e9c7ff4c7c3a[m
+  									<li><a href="dang-xuat"><i class="fa fa-sign-out"></i></a></li>[m
+  								</c:when>[m
+  							</c:choose>[m

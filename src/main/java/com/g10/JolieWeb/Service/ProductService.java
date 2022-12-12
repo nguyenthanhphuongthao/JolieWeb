@@ -12,4 +12,5 @@ public interface ProductService {
 	List<Product> getProductbyCategory(String category);
 	Product getDetailProduct(Integer id);
 	List<Product> searchProducts(String name);
+	void saveProduct(Product product);
 }

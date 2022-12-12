@@ -1,10 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%
+if (session.getAttribute("alert") != "Sai tên đăng nhập hoặc mật khẩu!") {
+	session.removeAttribute("alert");
+}
+%>
 <jsp:include page="header.jsp"></jsp:include>
 <link rel="stylesheet" href="css/login-register.css" type="text/css">
-
 
 <title>Đăng nhập | Jolie Cosmetics</title>
 </head>
@@ -12,6 +16,7 @@
 	<div class="container">
 		<form:form action="dang-nhap" method="POST" modelAttribute="account">
 			<div class="title">Đăng nhập</div>
+			<div style="color: red;">${alert }</div>
 			<div class="input-box underline">
 				<form:input path="username" placeholder="Nhập Email/SĐT"
 					required="true" />

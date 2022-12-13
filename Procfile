@@ -1,1 +1,1 @@
-web: java -war target/JolieWeb-1.0.war 
+web: java -jar target/JolieWeb-1.0.jar 

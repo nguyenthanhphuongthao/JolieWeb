@@ -1,0 +1,458 @@
+@import
+	url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap")
+	;
+
+.product spad {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+.col-lg-3 col-md-5 {
+	width: 100%;
+}
+
+.form .input-box {
+	width: 100%;
+	margin-top: 0px;
+}
+
+.input-box .form-control {
+	padding: 0 20px;
+}
+
+.input-box label {
+	color: #333;
+}
+
+.form :where(.input-box input, .select-box) {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	outline: none;
+	font-size: 1rem;
+	color: #707070;
+	margin-top: 8px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 0 15px;
+}
+
+.input-box input:focus {
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form .column {
+	display: flex;
+	column-gap: 15px;
+}
+
+.form .gender-box {
+	margin-top: 20px;
+}
+
+.gender-box h3 {
+	color: #333;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-bottom: 8px;
+}
+
+.form :where(.gender-option, .gender) {
+	display: flex;
+	align-items: center;
+	column-gap: 50px;
+	flex-wrap: wrap;
+}
+
+.form .gender {
+	column-gap: 5px;
+}
+
+.gender input {
+	accent-color: rgb(130, 106, 251);
+}
+
+.form :where(.gender input, .gender label) {
+	cursor: pointer;
+}
+
+.gender label {
+	color: #707070;
+}
+
+.address :where(input, .select-box) {
+	margin-top: 15px;
+}
+
+.select-box select {
+	height: 100%;
+	width: 100%;
+	outline: none;
+	border: none;
+	color: #707070;
+	font-size: 1rem;
+}
+
+/*Responsive*/
+@media screen and (max-width: 500px) {
+	.form .column {
+		flex-wrap: wrap;
+	}
+	.form :where(.gender-option, .gender) {
+		row-gap: 15px;
+	}
+}
+
+input[type="text"] {
+	width: 100%;
+	border: 2px solid #aaa;
+	border-radius: 4px;
+	margin: 8px 0;
+	outline: none;
+	padding: 8px;
+	box-sizing: border-box;
+	transition: 0.3s;
+}
+
+.inputWithIcon input[type="text"] {
+	padding-left: 40px;
+}
+
+.inputWithIcon {
+	position: relative;
+}
+
+.inputWithIcon i {
+	position: absolute;
+	left: 0;
+	top: 8px;
+	padding: 9px 8px;
+	color: #aaa;
+	transition: 0.3s;
+	font-size: 1.5em;
+}
+
+.inputWithIcon.inputIconBg i {
+	background-color: #aaa;
+	color: #fff;
+	padding: 9px 4px;
+	border-radius: 4px 0 0 4px;
+}
+
+.button_edit input[type="submit"] {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	outline: none;
+	border: none;
+	background: #9cd743;
+	font-size: 17px;
+	color: rgb(255, 255, 255);
+	border-radius: 5px;
+	border-color: #9cd743;
+	cursor: pointer;
+	width: 200px;
+	height: 45px;
+}
+
+.button_edit button {
+	margin-top: 15px;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	outline: none;
+	border: none;
+	background: #9cd743;
+	font-size: 17px;
+	color: rgb(255, 255, 255);
+	border-radius: 5px;
+	border-color: #9cd743;
+	cursor: pointer;
+	width: 200px;
+	height: 45px;
+}
+
+.modal .Edit form {
+	width: 700px;
+	height: 400px;
+	text-align: center;
+}
+
+.tabs {
+	display: flex;
+	flex-direction: column;
+}
+
+.tablinks {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	width: 100%;
+	padding: 1rem;
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: 600;
+	transition: 0.2s ease;
+}
+
+.tablinks:hover {
+	background: #7fad39;;
+	color: #fff;
+}
+
+.input-box input[type="password"] {
+	background-color: #fff;
+	color: black;
+	padding: 9px 4px;
+	border-radius: 4px 0 0 4px;
+	margin-top: 15px;
+	margin-left: 0;
+	margin-bottom: 15px;
+	width: 200px;
+	height: 50px;
+}
+
+.button_edit input[type="submit"]:hover {
+	background-color: #7fad39;
+}
+
+.container_edit {
+	margin-top: 0;
+}
+
+.input-box, .button_edit {
+	width: 500px;
+}
+/* Modal Content/Box */
+.modal-content {
+	margin-top: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	outline: none;
+	border: none;
+	background: #9cd743;
+	font-size: 17px;
+	color: rgb(255, 255, 255);
+	border-radius: 5px;
+	border-color: #9cd743;
+	cursor: pointer;
+	width: 200px;
+	height: 45px;
+}
+
+/* The Close Button */
+.close {
+	/* Position it in the top right corner outside of the modal */
+	position: absolute;
+	right: 25px;
+	top: 0;
+	color: #000;
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.sidebar__item_2 h4 {
+	font-size: 20px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.tabcontent_active {
+	margin-left: 50px;
+}
+
+.tabs .tablinks_active {
+	background: #9cd743;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	width: 100%;
+	padding: 1rem;
+	font-size: 13px;
+	text-transform: uppercase;
+	font-weight: 600;
+	transition: 0.2s ease;
+}
+/* order*/
+::selection {
+	background: rgb(255, 255, 255);
+	color: #fff;
+}
+
+/** page structure **/
+#wrapper {
+	display: block;
+	width: 850px;
+	background: #fff;
+	margin: 0 auto;
+	padding: 10px 17px;
+	-webkit-box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.35);
+}
+
+#keywords {
+	margin: 0 auto;
+	font-size: 1.2em;
+	margin: 15px 0px;
+	width:100%;
+	
+}
+
+
+#keywords thead {
+	cursor: pointer;
+	background: #9cd743;
+}
+
+#keywords thead tr th {
+	font-weight: bold;
+	padding: 10px 13px;
+	padding-left: 34px;
+	text-align: center;
+}
+
+#keywords thead tr th span {
+	padding-right: 20px;
+	background-repeat: no-repeat;
+	background-position: 100% 100%;
+	font-size: 17px;
+	
+}
+
+#keywords thead tr th.headerSortUp, #keywords thead tr th.headerSortDown
+	{
+	background: #acc8dd;
+}
+
+#keywords thead tr th.headerSortUp span {
+	background-image: url('https://i.imgur.com/SP99ZPJ.png');
+}
+
+#keywords thead tr th.headerSortDown span {
+	background-image: url('https://i.imgur.com/RkA9MBo.png');
+}
+
+#keywords tbody tr {
+	color: #555;
+}
+
+#keywords tbody tr td {
+	text-align: center;
+	padding: 15px 10px;
+	font-size: 16px;
+}
+#keywords tbody tr td h5 {
+	
+	font-size: 16px;
+}
+
+#keywords tbody tr td.lalign {
+	text-align: center;
+	border: 2px;
+}
+
+.tabcontent th {
+	font-size: 18px;
+	font-weight: 700px;
+}
+
+.sidebar__item_3 h4 {
+	font-size: 20px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.pro_name img {
+	max-width: 15%;
+}
+
+.order_item {
+	margin-bottom: 15px;
+}
+
+.order_item .btn {
+	width: 100%;
+	margin-left: 34%;
+}
+
+.order_item .btn a input {
+	background: #9cd743;
+	border: 0px;
+}
+
+.order_item .btn a input:hover {
+	background: #7fad39;
+}
+
+.order_item h4 {
+	font-size: 12px;
+	margin: 15px 0;
+}
+
+.lalign {
+	text-align: center;
+}
+
+.tiletab {
+	/* width: 100%; */
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tiletab button {
+	width: 20%;
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tiletab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tiletab  button.active {
+	background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+}
+
+.tabcontent table {
+	width: 100%;
+}
+.infoBill{
+	margin-top: 15px;
+	border-style: ridge;
+	padding: 5px;
+}
+----------------
+#rating{border:none;float:left;}
+#rating>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating>input:checked~label,
+#rating:not(:checked)>label:hover, 
+#rating:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#rating>input:checked+label:hover,
+#rating>input:checked~label:hover,
+#rating>label:hover~input:checked~label,
+#rating>input:checked~label:hover~label{color:#FFED85;}

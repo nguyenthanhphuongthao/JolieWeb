@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!-- Header Section Begin -->
 <header class="header">
@@ -26,9 +27,9 @@
 					<div class="hero__categories__all">
 						<i class="fa fa-bars"></i> <span>Danh mục</span>
 					</div>
-					<ul>
-						<c:forEach var="c" items="${listConfig}">
-							<li><a href="#">${c.name}</a></li>
+					<ul style="display: none;">
+						<c:forEach var="c" items="${listCategory}">
+							<li><a href="danh-muc-${c.value }">${c.name}</a></li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -36,16 +37,26 @@
 			<div class="col-lg-9">
 				<div class="hero__search">
 					<div class="hero__search__form">
-						<form action="#">
-							<input type="text" placeholder="What do yo u need?">
+						<form:form action="tim-kiem" method="POST"
+							modelAttribute="product">
+							<form:input path="name"
+								placeholder="Bạn muốn tìm kiếm sản phẩm nào?" />
 							<button type="submit" class="site-btn">Tìm kiếm</button>
-						</form>
+						</form:form>
 					</div>
 					<div class="header__cart">
 						<ul>
-							<li><a href="dang-nhap"><i class="fa fa-user"> Đăng nhập</i></a></li>
-							<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>3</span></a></li>
-							<li><a href="trang-chu"><i class="fa fa-sign-out"></i></a></li>
+							<c:choose>
+								<c:when test="${loginAccount.name == null}">
+									<li><a href="dang-nhap"><i class="fa fa-user"> Đăng nhập</i></a></li>
+								</c:when>
+								<c:when test="${loginAccount.name != null}">
+									<li><a href="thong-tin-tai-khoan"><i class="fa fa-user"> ${loginAccount.name}</i></a></li>
+									<li><a href="gio-hang"><i class="fa fa-shopping-bag"></i><span>${numDetailcart}</span></a></li>
+									<li><a href="dang-xuat"><i class="fa fa-sign-out"></i></a></li>
+								</c:when>
+							</c:choose>
+
 						</ul>
 					</div>
 				</div>

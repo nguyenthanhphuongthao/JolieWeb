@@ -44,6 +44,7 @@ public class Config implements java.io.Serializable {
 	private Set<Product> productsForCategory = new HashSet<Product>(0);
 	private Set<Account> accountsForRole = new HashSet<Account>(0);
 	private Set<Billinfo> billinfosForShippingMethod = new HashSet<Billinfo>(0);
+	private Set<Billinfo> billinfosForStatus = new HashSet<Billinfo>(0);
 
 	public Config() {
 	}
@@ -51,7 +52,7 @@ public class Config implements java.io.Serializable {
 	public Config(String groupcode, String code, String name, String value, String note, Integer iduser01,
 			Integer iduser02, Date date01, Date date02, Set<Product> productsForBrand, Set<Accountinfo> accountinfos,
 			Set<Billinfo> billinfosForPaymentMethod, Set<Account> accountsForType, Set<Product> productsForCategory,
-			Set<Account> accountsForRole, Set<Billinfo> billinfosForShippingMethod) {
+			Set<Account> accountsForRole, Set<Billinfo> billinfosForShippingMethod, Set<Billinfo> billinfosForStatus) {
 		this.groupcode = groupcode;
 		this.code = code;
 		this.name = name;
@@ -68,6 +69,7 @@ public class Config implements java.io.Serializable {
 		this.productsForCategory = productsForCategory;
 		this.accountsForRole = accountsForRole;
 		this.billinfosForShippingMethod = billinfosForShippingMethod;
+		this.billinfosForStatus = billinfosForStatus;
 	}
 
 	@Id
@@ -226,6 +228,15 @@ public class Config implements java.io.Serializable {
 
 	public void setBillinfosForShippingMethod(Set<Billinfo> billinfosForShippingMethod) {
 		this.billinfosForShippingMethod = billinfosForShippingMethod;
+	}
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "configByStatus")
+	public Set<Billinfo> getBillinfosForStatus() {
+		return this.billinfosForStatus;
+	}
+
+	public void setBillinfosForStatus(Set<Billinfo> billinfosForStatus) {
+		this.billinfosForStatus = billinfosForStatus;
 	}
 
 }

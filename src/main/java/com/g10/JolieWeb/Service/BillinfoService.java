@@ -7,4 +7,5 @@ import com.g10.JolieWeb.Entity.Billinfo;
 @Service
 public interface BillinfoService {
 	void saveBillinfo(Billinfo billinfo);
+	Billinfo getBillinfo(Integer idBillinfo);
 }

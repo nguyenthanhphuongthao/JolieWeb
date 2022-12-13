@@ -17,4 +17,9 @@ public class BillinfoServiceImpl implements BillinfoService{
 		billinfoDAO.save(billinfo);
 	}
 
+	@Override
+	public Billinfo getBillinfo(Integer idBillinfo) {
+		return billinfoDAO.getBillinfo(idBillinfo);
+	}
+
 }

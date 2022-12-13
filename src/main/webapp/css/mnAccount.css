@@ -296,9 +296,11 @@ input[type="text"] {
 #keywords {
 	margin: 0 auto;
 	font-size: 1.2em;
-	margin-bottom: 15px;
-	text-align: center;
+	margin: 15px 0px;
+	width:100%;
+	
 }
+
 
 #keywords thead {
 	cursor: pointer;
@@ -308,7 +310,7 @@ input[type="text"] {
 #keywords thead tr th {
 	font-weight: bold;
 	padding: 10px 13px;
-	padding-left: 40px;
+	padding-left: 34px;
 	text-align: center;
 }
 
@@ -317,6 +319,7 @@ input[type="text"] {
 	background-repeat: no-repeat;
 	background-position: 100% 100%;
 	font-size: 17px;
+	
 }
 
 #keywords thead tr th.headerSortUp, #keywords thead tr th.headerSortDown
@@ -341,10 +344,9 @@ input[type="text"] {
 	padding: 15px 10px;
 	font-size: 16px;
 }
-
 #keywords tbody tr td h5 {
-	font-size: 14px;
-    margin-top: 6px;
+	
+	font-size: 16px;
 }
 
 #keywords tbody tr td.lalign {
@@ -372,16 +374,16 @@ input[type="text"] {
 }
 
 .order_item .btn {
-	
-	margin-left: 80%;
+	width: 100%;
+	margin-left: 34%;
 }
 
-.order_item .btn button {
+.order_item .btn a input {
 	background: #9cd743;
 	border: 0px;
 }
 
-.order_item .btn button:hover {
+.order_item .btn a input:hover {
 	background: #7fad39;
 }
 
@@ -434,3 +436,23 @@ input[type="text"] {
 .tabcontent table {
 	width: 100%;
 }
+.infoBill{
+	margin-top: 15px;
+	border-style: ridge;
+	padding: 5px;
+}
+----------------
+#rating{border:none;float:left;}
+#rating>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+#rating>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+#rating>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating>input:checked~label,
+#rating:not(:checked)>label:hover, 
+#rating:not(:checked)>label:hover~label{color:#FFD700;}
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+#rating>input:checked+label:hover,
+#rating>input:checked~label:hover,
+#rating>label:hover~input:checked~label,
+#rating>input:checked~label:hover~label{color:#FFED85;}

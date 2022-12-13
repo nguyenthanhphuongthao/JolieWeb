@@ -15,6 +15,9 @@ if (session.getAttribute("alert") != "Sai tên đăng nhập hoặc mật khẩu
 <body>
 	<div class="container">
 		<form:form action="dang-nhap" method="POST" modelAttribute="account">
+			<div class="back">
+				<a href="trang-chu" style="color:black;"><i class="fas fa-arrow-left" ></i> Trang chủ</a>
+			</div>
 			<div class="title">Đăng nhập</div>
 			<div style="color: red;">${alert }</div>
 			<div class="input-box underline">
@@ -32,13 +35,13 @@ if (session.getAttribute("alert") != "Sai tên đăng nhập hoặc mật khẩu
 				<input type="submit" name="" value="Đăng nhập">
 			</div>
 		</form:form>
-		<div class="option">Đăng nhập với</div>
+		<!-- <div class="option">Đăng nhập với</div>
 		<div class="google">
 			<a href="#"><i class="fab fa-google"></i>Google</a>
 		</div>
 		<div class="facebook">
 			<a href="#"><i class="fab fa-facebook-f"></i>Facebook </a>
-		</div>
+		</div> -->
 		<div class="question">
 			Bạn bạn chưa có tài khoản? <a href="dang-ky">ĐĂNG KÝ NGAY </a>
 		</div>

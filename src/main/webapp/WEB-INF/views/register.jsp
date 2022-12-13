@@ -36,7 +36,12 @@ if (session.getAttribute("alert") != "Đã tồn tại tài khoản với tên �
 <body>
 	<div class="container" style="max-width: 410px;">
 		<form:form action="dang-ky" method="POST" modelAttribute="accountInfo">
-
+			<div class="back">
+				<a href="dang-nhap" style="color:black;"><i class="fas fa-arrow-left" ></i> Đăng nhập</a>
+			</div>
+			<div class="home">
+				<a href="trang-chu" style="color:black;"><i class="fa fa-home" ></i> Trang chủ</a>
+			</div>
 			<div class="title">Đăng ký</div>
 			<div style="color: red;">${alert}</div>
 			<div class="input-box underline">
@@ -81,12 +86,12 @@ if (session.getAttribute("alert") != "Đã tồn tại tài khoản với tên �
 				<input type="submit" name="submit" id="submit" value="Đăng ký" />
 			</div>
 		</form:form>
-		<div class="option">Đăng nhập với</div>
+		<!-- <div class="option">Đăng nhập với</div>
 		<div class="google">
 			<a href="#"><i class="fab fa-google"></i>Google</a>
 		</div>
 		<div class="facebook">
 			<a href="#"><i class="fab fa-facebook-f"></i>Facebook </a>
-		</div>
+		</div> -->
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>

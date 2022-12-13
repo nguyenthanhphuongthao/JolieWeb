@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="vn">
 
@@ -50,8 +50,8 @@
 								<button class="tablinks_active">Thông tin tài khoản</button>
 								<button class="tablinks" onclick="dieu_huong1()">Quản
 									lý đơn hàng</button>
-								<button class="tablinks" onclick="dieu_huong1()">Danh
-									sách sản phẩm yêu thích</button>
+								<button class="tablinks" onclick="dieu_huong2()">Danh
+									sách yêu thích</button>
 							</div>
 						</div>
 
@@ -66,30 +66,31 @@
 								<b>Thông tin tài khoản</b>
 							</h6>
 							<div class="inputWithIcon">
-								<form:input path="account.username" placeholder="tên đăng nhập"
+								<form:input path="account.username" placeholder="Tên đăng nhập"
 									disabled="true" />
 								<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 							</div>
 
 							<div class="inputWithIcon">
-								<form:input path="name" placeholder="Tên tài khoản" />
-								<i class="fa fa-user fa-lg fa-fw" aria-hidden="true" ></i>
+								<form:input path="name" placeholder="Tên tài khoản"
+									required="true" />
+								<i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
 							</div>
 							<div class="inputWithIcon">
 								<form:input path="address" placeholder="Địa chỉ" />
 								<i class="fa fa-map-marker" aria-hidden="true"></i>
 							</div>
 							<div class="inputWithIcon">
-								<form:input path="" placeholder="SĐT" />
+								<form:input path="phone" placeholder="SĐT" />
 								<i class="fa fa-phone" aria-hidden="true"></i>
 							</div>
 							<div class="inputWithIcon">
-								<form:input path="" placeholder="Email" />
+								<form:input path="email" placeholder="Email" />
 								<i class="fa fa-envelope" aria-hidden="true"></i>
 							</div>
 							<div class="input-box">
 								<h6>Ngày sinh</h6>
-								<form:input id="datepicker" path="birth" />
+								<form:input id="datepicker" path="birth"/>
 							</div>
 							<div class="gender-box">
 								<h6>Giới tính</h6>

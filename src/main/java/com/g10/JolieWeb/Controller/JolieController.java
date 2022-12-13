@@ -23,12 +23,14 @@ import com.g10.JolieWeb.Entity.Billinfo;
 import com.g10.JolieWeb.Entity.Cart;
 import com.g10.JolieWeb.Entity.Detailcart;
 import com.g10.JolieWeb.Entity.Product;
+import com.g10.JolieWeb.Entity.Favourite;
 import com.g10.JolieWeb.Service.AccountServiceImpl;
 import com.g10.JolieWeb.Service.AccountinfoServiceImpl;
 import com.g10.JolieWeb.Service.BillinfoServiceImpl;
 import com.g10.JolieWeb.Service.CartServiceImpl;
 import com.g10.JolieWeb.Service.ConfigServiceImpl;
 import com.g10.JolieWeb.Service.DetailcartServiceImpl;
+import com.g10.JolieWeb.Service.FavouriteServiceImpl;
 import com.g10.JolieWeb.Service.ProductServiceImpl;
 
 @Controller
@@ -47,6 +49,8 @@ public class JolieController {
 	private DetailcartServiceImpl detailcartService;
 	@Autowired
 	private BillinfoServiceImpl billinfoService;
+	@Autowired
+	private FavouriteServiceImpl favouriteService;
 
 	@RequestMapping(value = { "/", "trang-chu" }, method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session) {
@@ -99,9 +103,9 @@ public class JolieController {
 		}
 		session.setAttribute("numDetailcart", 0);
 		billinfo.setCart(cart);
-		billinfo.setStatus(1);
+		billinfo.setConfigByStatus(configService.getIdConfig(19));
 		billinfo.setTotalPrice(cart.getTotalPrice());
-		long millis = System.currentTimeMillis();  
+		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
 		billinfo.setDatePayment(date);
 		billinfoService.saveBillinfo(billinfo);
@@ -184,9 +188,9 @@ public class JolieController {
 	@PostMapping("tim-kiem")
 	public ModelAndView searchProduct(@ModelAttribute("product") Product product, BindingResult result,
 			HttpSession session) {
-		session.setAttribute("page", "trang-chu");
+		session.setAttribute("page", "tim-kiem");
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("productfilter");
+		mv.setViewName("search");
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
 		mv.addObject("listProduct", productService.searchProducts(product.getName()));
@@ -210,7 +214,10 @@ public class JolieController {
 			accountService.saveAccount(acc);
 			accountInfoService.saveAccountInfo(accountInfo);
 			session.removeAttribute("alert");
-			return "redirect:/dang-nhap";
+			session.setAttribute("loginAccount", accountInfo);
+			session.setAttribute("cart", cartService.getCart(accountInfo.getId(), 0));
+			session.setAttribute("numDetailcart", detailcartService.getNumDetailcart(cartService.getCart(accountInfo.getId(), 0)));
+			return "redirect:/trang-chu";
 		} else {
 			session.setAttribute("alert", "Đã tồn tại tài khoản với tên đăng nhập này");
 		}
@@ -309,6 +316,9 @@ public class JolieController {
 		loginAccount.setAddress(accountInfo.getAddress());
 		loginAccount.setName(accountInfo.getName());
 		loginAccount.getConfig().setId(accountInfo.getConfig().getId());
+		loginAccount.setEmail(accountInfo.getEmail());
+		loginAccount.setPhone(accountInfo.getPhone());
+
 		if (accountInfo.getBirth() == null) {
 			loginAccount.setBirth(loginAccount.getBirth());
 		} else {
@@ -321,18 +331,58 @@ public class JolieController {
 		}
 		accountService.saveAccount(account);
 		accountInfoService.saveAccountInfo(loginAccount);
+		session.setAttribute("loginAccount", loginAccount);
 		return "redirect:/thong-tin-tai-khoan";
 	}
-	
+
 	@RequestMapping(value = "danh-sach-yeu-thich", method = RequestMethod.GET)
-	public ModelAndView Favourite() {
+	public ModelAndView Favourite(HttpSession session) {
+		session.setAttribute("page", "danh-sach-yeu-thich");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("favourite");
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
+		mv.addObject("listFavourite",
+				favouriteService.getListFavourites((Accountinfo) session.getAttribute("loginAccount")));
 		return mv;
 	}
-	
+
+	@RequestMapping(value = "them-vao-danh-sach-yeu-thich-{id}", method = RequestMethod.GET)
+	public String addItemtoFav(@PathVariable("id") Integer idProduct, HttpSession session) {
+		String page = (String) session.getAttribute("page");
+		Product product = productService.getDetailProduct(idProduct);
+		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");
+		List<Favourite> favourites = favouriteService.getListFavourites(loginAccount);
+		Favourite favourite = new Favourite(loginAccount, product);
+		if (session.getAttribute("loginAccount") == null) {
+			return "redirect:/dang-nhap";
+		}
+		if (isExistFav(idProduct, favourites) == -1) {
+			favouriteService.saveFavourite(favourite);
+		}
+		
+		return "redirect:/" + page;
+	}
+
+	private int isExistFav(Integer id, List<Favourite> favourites) {
+		for (int i = 0; i < favourites.size(); i++) {
+			if (favourites.get(i).getProduct().getId() == id) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	@RequestMapping(value = "xoa-khoi-danh-sach-yeu-thich-{id}", method = RequestMethod.GET)
+	public String removeItemFromFav(@PathVariable("id") Integer idProduct, HttpSession session) {
+		Product product = productService.getDetailProduct(idProduct);
+		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");
+		Favourite favourite = favouriteService.findFavourite(loginAccount, product);
+		favouriteService.deleteFavourite(favourite);
+		String page = (String) session.getAttribute("page");
+		return "redirect:/" + page;
+	}
+
 	@RequestMapping(value = "quan-ly-don-hang", method = RequestMethod.GET)
 	public ModelAndView OrderBill(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -341,6 +391,28 @@ public class JolieController {
 		mv.addObject("listCategory", configService.getCategory());
 		Accountinfo loginAccount = (Accountinfo) session.getAttribute("loginAccount");
 		mv.addObject("listBill", cartService.getListCart(loginAccount.getId(), 1));
+		return mv;
+	}
+	
+	@RequestMapping(value = "huy-don-hang-{id}", method = RequestMethod.GET)
+	public String cancelBill(@PathVariable("id") Integer idBillinfo) {
+		Billinfo billinfo = billinfoService.getBillinfo(idBillinfo);
+		billinfo.setConfigByStatus(configService.getIdConfig(22));
+		billinfoService.saveBillinfo(billinfo);
+		return "redirect:/quan-ly-don-hang";
+	}
+	
+	@RequestMapping(value = "chi-tiet-don-hang-{id}", method = RequestMethod.GET)
+	public ModelAndView viewBillinfo(@PathVariable("id") Integer idBillinfo,HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("detailbill");
+		mv.addObject("product", new Product());
+		mv.addObject("listCategory", configService.getCategory());
+		mv.addObject("numDetailCart", session.getAttribute("numDetailCart"));
+		Billinfo billinfo = billinfoService.getBillinfo(idBillinfo);
+		mv.addObject("billinfo", billinfo);
+		mv.addObject("cart", billinfo.getCart());
+		mv.addObject("listProductBill", detailcartService.getDetailcarts(billinfo.getCart()));
 		return mv;
 	}
 }

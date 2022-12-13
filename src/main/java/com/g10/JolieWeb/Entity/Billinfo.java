@@ -36,13 +36,13 @@ public class Billinfo implements java.io.Serializable {
 	private String recipientName;
 	private String recipientPhone;
 	private Date datePayment;
-	private int status;
+	private Config configByStatus;
 
 	public Billinfo() {
 	}
 
 	public Billinfo(Cart cart, Config configByPaymentMethod, Config configByShippingMethod, float totalPrice,
-			String shippingAddress, String recipientName, String recipientPhone, int status) {
+			String shippingAddress, String recipientName, String recipientPhone, Config configByStatus) {
 		this.cart = cart;
 		this.configByPaymentMethod = configByPaymentMethod;
 		this.configByShippingMethod = configByShippingMethod;
@@ -50,11 +50,11 @@ public class Billinfo implements java.io.Serializable {
 		this.shippingAddress = shippingAddress;
 		this.recipientName = recipientName;
 		this.recipientPhone = recipientPhone;
-		this.status = status;
+		this.configByStatus = configByStatus;
 	}
 
 	public Billinfo(Cart cart, Config configByPaymentMethod, Config configByShippingMethod, float totalPrice,
-			String shippingAddress, String recipientName, String recipientPhone, Date datePayment, int status) {
+			String shippingAddress, String recipientName, String recipientPhone, Date datePayment, Config configByStatus) {
 		this.cart = cart;
 		this.configByPaymentMethod = configByPaymentMethod;
 		this.configByShippingMethod = configByShippingMethod;
@@ -63,7 +63,7 @@ public class Billinfo implements java.io.Serializable {
 		this.recipientName = recipientName;
 		this.recipientPhone = recipientPhone;
 		this.datePayment = datePayment;
-		this.status = status;
+		this.configByStatus = configByStatus;
 	}
 
 	@Id
@@ -153,14 +153,15 @@ public class Billinfo implements java.io.Serializable {
 	public void setDatePayment(Date datePayment) {
 		this.datePayment = datePayment;
 	}
-
-	@Column(name = "status", nullable = false)
-	public int getStatus() {
-		return this.status;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "status", nullable = false)
+	public Config getConfigByStatus() {
+		return this.configByStatus;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setConfigByStatus(Config configByStatus) {
+		this.configByStatus = configByStatus;
 	}
 
 }

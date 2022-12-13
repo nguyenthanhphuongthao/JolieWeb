@@ -1,5 +1,6 @@
 package com.g10.JolieWeb.Entity;
 // default package
+
 // Generated Dec 2, 2022, 3:53:02 PM by Hibernate Tools 4.3.6.Final
 
 import java.util.Date;
@@ -36,8 +37,9 @@ public class Accountinfo implements java.io.Serializable {
 	private String name;
 	private Date birth;
 	private String address;
+	private String email;
+	private String phone;
 	private Date date02;
-	private Set<Review> reviews = new HashSet<Review>(0);
 	private Set<Cart> carts = new HashSet<Cart>(0);
 
 	public Accountinfo() {
@@ -48,15 +50,15 @@ public class Accountinfo implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Accountinfo(Account account, Config config, String name, Date birth, String address, Date date02,
-			Set<Review> reviews, Set<Cart> carts) {
+	public Accountinfo(Account account, Config config, String name, Date birth, String address, Date date02, Set<Cart> carts, String email, String phone) {
 		this.account = account;
 		this.config = config;
 		this.name = name;
 		this.birth = birth;
 		this.address = address;
+		this.email = email;
+		this.phone = phone;
 		this.date02 = date02;
-		this.reviews = reviews;
 		this.carts = carts;
 	}
 
@@ -129,14 +131,6 @@ public class Accountinfo implements java.io.Serializable {
 	public void setDate02(Date date02) {
 		this.date02 = date02;
 	}
-@OneToMany(fetch = FetchType.EAGER, mappedBy = "accountinfo")
-	public Set<Review> getReviews() {
-		return this.reviews;
-	}
-
-	public void setReviews(Set<Review> reviews) {
-		this.reviews = reviews;
-	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "accountinfo")
 	public Set<Cart> getCarts() {
@@ -145,6 +139,24 @@ public class Accountinfo implements java.io.Serializable {
 
 	public void setCarts(Set<Cart> carts) {
 		this.carts = carts;
+	}
+
+	@Column(name = "email", length = 100)
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Column(name = "phone", length = 10)
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 }

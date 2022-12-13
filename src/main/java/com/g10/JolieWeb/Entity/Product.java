@@ -43,7 +43,6 @@ public class Product implements java.io.Serializable {
 	private Integer iduser02;
 	private Date date01;
 	private Date date02;
-	private Set<Review> reviews = new HashSet<Review>(0);
 	private Set<Detailcart> detailcarts = new HashSet<Detailcart>(0);
 
 	public Product() {
@@ -58,7 +57,7 @@ public class Product implements java.io.Serializable {
 
 	public Product(Config configByBrand, Config configByCategory, Media media, String name, String origin,
 			String description, float price, Float priceSale, int inventory, Integer iduser01, Integer iduser02,
-			Date date01, Date date02, Set<Review> reviews, Set<Detailcart> detailcarts) {
+			Date date01, Date date02, Set<Detailcart> detailcarts) {
 		this.configByBrand = configByBrand;
 		this.configByCategory = configByCategory;
 		this.media = media;
@@ -72,7 +71,6 @@ public class Product implements java.io.Serializable {
 		this.iduser02 = iduser02;
 		this.date01 = date01;
 		this.date02 = date02;
-		this.reviews = reviews;
 		this.detailcarts = detailcarts;
 	}
 
@@ -208,15 +206,6 @@ public class Product implements java.io.Serializable {
 
 	public void setDate02(Date date02) {
 		this.date02 = date02;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
-	public Set<Review> getReviews() {
-		return this.reviews;
-	}
-
-	public void setReviews(Set<Review> reviews) {
-		this.reviews = reviews;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "product")

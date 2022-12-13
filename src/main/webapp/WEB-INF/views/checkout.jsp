@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="header.jsp"></jsp:include>
 <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -95,11 +96,13 @@
 									</div>
 									<ul>
 										<c:forEach var="c" items="${listCart}">
-											<li>${c.product.name}<span>${c.totalPrice}</span></li>
+											<li>${c.product.name}<span><fmt:formatNumber type="number" maxFractionDigits="0"
+										value="${c.totalPrice}" /> VNĐ</span></li>
 										</c:forEach>
 									</ul>
 									<div class="checkout__order__total">
-										Tổng cộng <span>${cart.totalPrice}</span>
+										Tổng cộng <span> <fmt:formatNumber type="number" maxFractionDigits="0"
+										value="${cart.totalPrice}" /> VNĐ</span>
 									</div>
 									<div class="checkout__input__checkbox"></div>
 

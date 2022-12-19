@@ -31,8 +31,7 @@
 						<h3>${detailProduct.name }</h3>
 						<div class="product__details__price">
 							<fmt:formatNumber type="number" maxFractionDigits="0"
-								value="${detailProduct.price}" />
-							VNĐ
+								value="${detailProduct.price}" /> VNĐ
 						</div>
 						<a href="them-vao-gio-hang-${detailProduct.id}"
 							class="primary-btn">Thêm vào giỏ hàng</a> <a
@@ -55,11 +54,9 @@
 					<div class="product__details__tab">
 						<ul class="nav nav-tabs" role="tablist">
 							<li class="nav-item"><a class="nav-link active"
-								data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Mô
-									tả</a></li>
+								data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Mô tả</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#tabs-2" role="tab" aria-selected="false">Thông tin
-									sản phẩm</a></li>
+								href="#tabs-2" role="tab" aria-selected="false">Thông tin sản phẩm</a></li>
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="tabs-1" role="tabpanel">
@@ -69,18 +66,17 @@
 							</div>
 							<div class="tab-pane" id="tabs-2" role="tabpanel">
 								<div class="product__details__tab__desc">
-									<table class="tb_info_sanpham" cellspacing="0" cellpadding="0"
-										border="0">
+									<table class="tb_info_sanpham" cellspacing="0" cellspacing="0" border="0" style="width: 50%;">
 										<tbody>
-											<tr>
+											<tr style="border: 1.5px solid black;">
 												<td class="col_tb_info_sp bg_info_sp">Barcode</td>
 												<td>${detailProduct.id}</td>
 											</tr>
-											<tr>
+											<tr style="border: 1.5px solid black;">
 												<td class="col_tb_info_sp bg_info_sp">Thương Hiệu</td>
 												<td>${detailProduct.configByBrand.name}</td>
 											</tr>
-											<tr>
+											<tr style="border: 1.5px solid black;">
 												<td class="col_tb_info_sp bg_info_sp">Nơi sản xuất</td>
 												<td>${detailProduct.origin}</td>
 											</tr>

@@ -21,7 +21,7 @@ if (session.getAttribute("alert") != "Sai tên đăng nhập hoặc mật khẩu
 			<div class="title">Đăng nhập</div>
 			<div style="color: red;">${alert }</div>
 			<div class="input-box underline">
-				<form:input path="username" placeholder="Nhập Email/SĐT"
+				<form:input path="username" placeholder="Tên đăng nhập"
 					required="true" />
 				<div class="underline"></div>
 			</div>

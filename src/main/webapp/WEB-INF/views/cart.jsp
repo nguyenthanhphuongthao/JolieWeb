@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>Giỏ hàng</h2>
+						<h2 style="color:black;">Giỏ hàng</h2>
 					</div>
 				</div>
 			</div>
@@ -26,9 +26,6 @@
 	<!-- Shoping Cart Section Begin -->
 	<section class="shoping-cart spad">
 		<div class="container">
-			<div style="font-size: 20px; color: red; margin-bottom: 10px;">
-				<strong>${alert}</strong>
-			</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="shoping__cart__table">
@@ -88,9 +85,9 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="shoping__checkout">
-						<h5>Cart Total</h5>
+						<h5>Tổng giá trị giỏ hàng</h5>
 						<ul>
-							<li>Total <span><fmt:formatNumber type="number"
+							<li>Tổng giá trị <span><fmt:formatNumber type="number"
 										maxFractionDigits="0" value="${cart.totalPrice}" /> VNĐ</span></li>
 						</ul>
 						<a href="thanh-toan" class="primary-btn">Tiến hành thanh toán</a>

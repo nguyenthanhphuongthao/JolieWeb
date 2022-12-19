@@ -37,8 +37,7 @@
 			<div class="col-lg-9">
 				<div class="hero__search">
 					<div class="hero__search__form">
-						<form:form action="tim-kiem" method="POST"
-							modelAttribute="product">
+						<form:form action="tim-kiem" modelAttribute="product">
 							<form:input path="name"
 								placeholder="Bạn muốn tìm kiếm sản phẩm nào?" />
 							<button type="submit" class="site-btn">Tìm kiếm</button>

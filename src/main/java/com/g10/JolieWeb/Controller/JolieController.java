@@ -67,19 +67,6 @@ public class JolieController {
 	public ModelAndView checkout(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Cart cart = (Cart) session.getAttribute("cart");
-		List<Detailcart> detailcarts = detailcartService.getDetailcarts(cart);
-		for (int i = 0; i < detailcarts.size(); i++) {
-			Product product = detailcarts.get(i).getProduct();
-			if (detailcarts.get(i).getQuantity() > product.getInventory()) {
-				session.setAttribute("alert", "Số lượng hàng trong kho của sản phẩm " + product.getName()
-						+ " không đủ!\n Vui lòng giảm số lượng!");
-				mv.addObject("alert", session.getAttribute("alert"));
-				mv.setViewName("redirect:/gio-hang");
-				return mv;
-			} else {
-				session.removeAttribute("alert");
-			}
-		}
 		mv.setViewName("checkout");
 		mv.addObject("product", new Product());
 		mv.addObject("listCategory", configService.getCategory());
@@ -185,7 +172,7 @@ public class JolieController {
 		return "redirect:/trang-chu";
 	}
 
-	@PostMapping("tim-kiem")
+	@RequestMapping("tim-kiem")
 	public ModelAndView searchProduct(@ModelAttribute("product") Product product, BindingResult result,
 			HttpSession session) {
 		session.setAttribute("page", "tim-kiem");

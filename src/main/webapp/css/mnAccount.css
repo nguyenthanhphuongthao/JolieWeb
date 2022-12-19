@@ -378,9 +378,11 @@ input[type="text"] {
 	margin-left: 34%;
 }
 
-.order_item .btn a input {
-	background: #9cd743;
+.order_item .btn a {
+	font-weight: 600;
+	color: black;
 	border: 0px;
+	margin-left: 5px;
 }
 
 .order_item .btn a input:hover {

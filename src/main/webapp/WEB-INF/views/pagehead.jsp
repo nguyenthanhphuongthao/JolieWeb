@@ -27,7 +27,7 @@
 					<div class="hero__categories__all">
 						<i class="fa fa-bars"></i> <span>Danh mục</span>
 					</div>
-					<ul>
+					<ul style="display: none;">
 						<c:forEach var="c" items="${listCategory}">
 							<li><a href="danh-muc-${c.value }">${c.name}</a></li>
 						</c:forEach>
@@ -37,13 +37,12 @@
 			<div class="col-lg-9">
 				<div class="hero__search">
 					<div class="hero__search__form">
-						<form:form action="tim-kiem" method="POST"
-							modelAttribute="product">
-							<div class="hero__search__categories">
-								All Categories <span class="arrow_carrot-down"></span>
-							</div>
+						<form:form action="tim-kiem" method="POST" modelAttribute="product">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+   
 							<form:input path="name"
 								placeholder="Bạn muốn tìm kiếm sản phẩm nào?" />
+   
 							<button type="submit" class="site-btn">Tìm kiếm</button>
 						</form:form>
 					</div>

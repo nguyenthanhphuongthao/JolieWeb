@@ -8,6 +8,6 @@ import com.g10.JolieWeb.Entity.Account;
 public interface AccountService {
 
 	Account findByUsernameAndPassword(String username, String password);
-	Account findByUsername(String username);
+	Account findByUserName(String username);
 	void saveAccount(Account account);
 }

@@ -140,11 +140,6 @@ ol {
 	background-position: top center;
 }
 
-.spad {
-	padding-top: 100px;
-	padding-bottom: 100px;
-}
-
 .text-white h1,
 .text-white h2,
 .text-white h3,
@@ -809,11 +804,6 @@ ol {
 /*---------------------
   Featured
 -----------------------*/
-
-.featured {
-	padding-top: 80px;
-	padding-bottom: 40px;
-}
 
 .featured__controls {
 	text-align: center;

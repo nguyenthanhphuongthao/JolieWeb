@@ -15,6 +15,15 @@ public interface ConfigDAO extends JpaRepository <Config, Long>{
 	@Query("SELECT c FROM Config c WHERE groupcode='CATEGORY'")
 	public List<Config> getCategory();
 	
+	@Query("SELECT c FROM Config c WHERE groupcode='BRAND'")
+	public List<Config> getBrand();
+	
+	@Query("SELECT c FROM Config c WHERE groupcode='BRAND'")
+	public List<Config> getRole();
+	
 	@Query("SELECT c FROM Config c WHERE id=?1")
 	public Config getIdConfig(Integer id);
+	
+	@Query("SELECT c FROM Config c WHERE name=?1")
+	public Config findConfig(String name);
 }

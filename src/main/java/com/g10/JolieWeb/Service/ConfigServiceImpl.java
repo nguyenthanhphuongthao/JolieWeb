@@ -23,4 +23,24 @@ public class ConfigServiceImpl implements ConfigService {
 	public Config getIdConfig(Integer id) {
 		return configDAO.getIdConfig(id);
 	}
+
+	@Override
+	public List<Config> getBrand() {
+		return configDAO.getBrand();
+	}
+
+	@Override
+	public void saveConfig(Config config) {
+		configDAO.save(config);
+	}
+
+	@Override
+	public List<Config> getRole() {
+		return configDAO.getRole();
+	}
+
+	@Override
+	public Config findConfig(String name) {
+		return configDAO.findConfig(name);
+	}
 }

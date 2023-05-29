@@ -9,17 +9,35 @@ if (session.getAttribute("alert") != "Sai tên đăng nhập hoặc mật khẩu
 %>
 <jsp:include page="header.jsp"></jsp:include>
 <link rel="stylesheet" href="css/login-register.css" type="text/css">
-
+<script>
+	function checkUsername() {
+	    var username = document.getElementById('username').value;
+	    var regex = /^[a-zA-Z0-9_]+$/;
+	
+	    if (regex.test(username)) {
+	        document.getElementById('submit').disabled = false;
+	        document.getElementById('message').innerHTML = '';
+	    } else {
+	        document.getElementById('submit').disabled = true;
+	        document.getElementById('message').style.color = 'red';
+	        document.getElementById('message').innerHTML = 'Username không hợp lệ!';
+	    }
+	}
+</script>
 <title>Đăng nhập | Jolie Cosmetics</title>
 </head>
 <body>
 	<div class="container">
 		<form:form action="dang-nhap" method="POST" modelAttribute="account">
+			<div class="back">
+				<a href="trang-chu" style="color:black;"><i class="fas fa-arrow-left" ></i> Trang chủ</a>
+			</div>
 			<div class="title">Đăng nhập</div>
 			<div style="color: red;">${alert }</div>
+			<span id="message" ></span>
 			<div class="input-box underline">
-				<form:input path="username" placeholder="Nhập Email/SĐT"
-					required="true" />
+				<form:input path="username" id="username" onkeyup="checkUsername()" placeholder="Tên đăng nhập"
+					required="true" maxlength="25"/>
 				<div class="underline"></div>
 			</div>
 			<div class="input-box">
@@ -29,16 +47,9 @@ if (session.getAttribute("alert") != "Sai tên đăng nhập hoặc mật khẩu
 			</div>
 
 			<div class="input-box button">
-				<input type="submit" name="" value="Đăng nhập">
+				<input type="submit" name="" id="submit" value="Đăng nhập">
 			</div>
 		</form:form>
-		<div class="option">Đăng nhập với</div>
-		<div class="google">
-			<a href="#"><i class="fab fa-google"></i>Google</a>
-		</div>
-		<div class="facebook">
-			<a href="#"><i class="fab fa-facebook-f"></i>Facebook </a>
-		</div>
 		<div class="question">
 			Bạn bạn chưa có tài khoản? <a href="dang-ky">ĐĂNG KÝ NGAY </a>
 		</div>

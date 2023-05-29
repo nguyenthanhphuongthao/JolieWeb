@@ -76,8 +76,7 @@
 							<div class="tab-pane" id="tabs-2" role="tabpanel">
 								<div class="product__details__tab__desc">
 									<h6>Products Infomation</h6>
-									<table class="tb_info_sanpham" cellspacing="0" cellpadding="0"
-										border="0">
+									<table class="tb_info_sanpham">
 										<tbody>
 											<tr>
 												<td class="col_tb_info_sp bg_info_sp">Barcode</td>
@@ -104,6 +103,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- Product Details Section End -->
 

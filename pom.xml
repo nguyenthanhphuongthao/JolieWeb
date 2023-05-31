@@ -5,7 +5,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.5</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.g10</groupId>
 	<artifactId>JolieWeb</artifactId>
@@ -92,7 +92,7 @@
 		<dependency>
 		    <groupId>com.cloudinary</groupId>
 		    <artifactId>cloudinary-http44</artifactId>
-		    <version>1.31.0</version>
+		    <version>1.33.0</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.mindrot</groupId>
